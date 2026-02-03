@@ -73,7 +73,7 @@
         section {
             padding: 50px 0;
         }
-        /* 头部导航优化：适配LOGO尺寸，布局更协调 */
+        /* 头部导航：适配270px大LOGO，布局协调 */
         header {
             background-color: var(--white);
             box-shadow: var(--shadow);
@@ -83,33 +83,32 @@
             width: 100%;
             z-index: 999;
         }
-    .nav-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 270px; /* 比LOGO高20px，留足上下间距 */
-}
-    
-    /* 专属LOGO样式：适配新LOGO，放大且清晰 */
-/* 专属LOGO样式：PC端放大3倍，清晰显示，透明底不变形 */
-.logo {
-    height: 240px; /* 3倍放大核心高度，清晰显示LOGO文字 */
-    display: flex;
-    align-items: center;
-    padding: 10px 0; /* 上下留间距，不顶满导航栏 */
-}
-.logo img {
-    height: 100%;
-    width: auto;
-    object-fit: contain; /* 强制原比例显示，文字绝对清晰 */
-    background: transparent; /* 彻底去除白底，适配导航栏 */
-}
+        .nav-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 290px; /* 匹配270px LOGO，留20px间距 */
+            padding: 0 10px;
+        }
+        /* LOGO样式：270px放大，强制原比例，透明底，不模糊 */
+        .logo {
+            height: 270px; /* 你要求的放大尺寸，核心值 */
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain; /* 保证LOGO不变形、文字清晰 */
+            background: transparent !important; /* 彻底去除白底，优先级最高 */
+        }
+        /* 导航菜单样式，适配大导航栏 */
         .nav-menu {
             display: flex;
             gap: 30px;
         }
         .nav-menu a {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
@@ -117,7 +116,6 @@
         .nav-menu a:hover {
             color: var(--primary);
         }
-        /* 导航链接hover下划线小效果 */
         .nav-menu a::after {
             content: "";
             position: absolute;
@@ -131,18 +129,19 @@
         .nav-menu a:hover::after {
             width: 100%;
         }
+        /* 汉堡菜单：仅手机端显示，适配 */
         .hamburger {
-            font-size: 24px;
+            font-size: 28px;
             color: var(--dark-gray);
             cursor: pointer;
             display: none;
             z-index: 999;
         }
-        /* 轮播图优化：微调文字遮罩，更贴合外贸风格 */
+        /* 轮播图：适配大导航栏，顶部间距正确 */
         .banner {
-            margin-top: 70px;
+            margin-top: 290px; /* 与导航栏高度一致，避免被遮挡 */
             width: 100%;
-            height: calc(100vh - 70px);
+            height: calc(100vh - 290px);
             overflow: hidden;
             position: relative;
         }
@@ -187,7 +186,7 @@
             max-width: 600px;
             line-height: 1.8;
         }
-        /* 核心优势优化：强化悬浮效果，内边距更舒适 */
+        /* 核心优势：视觉优化，悬浮有层次 */
         .advantage {
             background-color: var(--light-gray);
         }
@@ -224,7 +223,7 @@
             color: #666;
             line-height: 1.7;
         }
-        /* 车源卡片优化：强化阴影和放大效果，视觉更精致 */
+        /* 车源卡片：精致化，悬浮效果强化 */
         .car-list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -284,7 +283,7 @@
             padding-top: 10px;
             border-top: 1px dashed var(--border-gray);
         }
-        /* 服务流程优化：间距调整，更清爽 */
+        /* 服务流程：间距清爽，适配 */
         .process {
             background-color: var(--light-gray);
         }
@@ -333,7 +332,7 @@
         .process-item:last-child::after {
             display: none;
         }
-        /* 资质板块优化：图片圆角，更美观 */
+        /* 资质板块：图片圆角，hover放大 */
         .cert-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -359,7 +358,7 @@
             font-weight: 500;
             color: #555;
         }
-        /* 联系板块优化：表单和信息区更协调 */
+        /* 联系板块：双地址/双电话，信息完整 */
         .contact-wrap {
             padding-bottom: 30px;
         }
@@ -382,6 +381,7 @@
             margin-bottom: 25px;
             font-size: 16px;
             padding: 8px 0;
+            flex-wrap: wrap;
         }
         .contact-item i {
             font-size: 22px;
@@ -425,7 +425,7 @@
             height: 120px;
             resize: none;
         }
-        /* 底部优化：内边距调整，文字更清晰 */
+        /* 底部：信息完整，样式协调 */
         footer {
             background-color: var(--dark-gray);
             color: #e0e0e0;
@@ -441,49 +441,29 @@
             color: var(--primary);
             font-weight: 500;
         }
-        /* 响应式适配优化：小屏端布局更友好，地址自动换行 */
-        @media (max-width: 992px) {
-            .advantage-list, .car-list {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            .process-list {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
-            }
-            .process-item {
-                margin-bottom: 20px;
-            }
-            .process-item::after {
-                display: none;
-            }
-            .contact {
-                grid-template-columns: 1fr;
-            }
-            .contact-info {
-                order: 2;
-            }
-            .contact-form {
-                order: 1;
-            }
-            .cert-list {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .contact-item {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-        }
+        /* 手机端适配：核心！LOGO自动缩小，导航栏恢复正常，无遮挡 */
         @media (max-width: 768px) {
+            /* 手机端LOGO+导航栏恢复正常尺寸 */
+            .logo {
+                height: 60px !important;
+            }
+            .nav-wrap {
+                height: 80px !important;
+            }
+            .banner {
+                margin-top: 80px !important;
+                height: calc(100vh - 80px) !important;
+            }
+            /* 手机端汉堡菜单显示 */
             .hamburger {
                 display: block;
             }
             .nav-menu {
                 position: fixed;
-                top: 70px;
+                top: 80px;
                 right: -100%;
                 width: 85%;
-                height: calc(100vh - 70px);
+                height: calc(100vh - 80px);
                 background-color: var(--white);
                 flex-direction: column;
                 gap: 0;
@@ -499,6 +479,7 @@
                 padding: 18px 0;
                 border-bottom: 1px solid #f0f0f0;
             }
+            /* 其他板块小屏适配 */
             .banner-text h1 {
                 font-size: 22px;
             }
@@ -529,18 +510,34 @@
             .contact-form {
                 padding: 25px;
             }
-            .logo {
-                height: 40px;
+            .contact {
+                grid-template-columns: 1fr;
             }
-            .nav-wrap {
-                height: 60px;
+            .contact-info {
+                order: 2;
             }
-            .banner {
-                margin-top: 60px;
-                height: calc(100vh - 60px);
+            .contact-form {
+                order: 1;
             }
-            .contact-item span {
-                word-break: break-all;
+        }
+        /* 平板端适配 */
+        @media (max-width: 992px) {
+            .advantage-list, .car-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .process-list {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            .process-item {
+                margin-bottom: 20px;
+            }
+            .process-item::after {
+                display: none;
+            }
+            .cert-list {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -548,12 +545,11 @@
 <body>
     <header>
         <div class="container nav-wrap">
-            <!-- 你的专属LOGO图片，尺寸自适应 -->
-<div class="logo">
-    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/607ab20f76634f7c97483aef82298b40.jpg~tplv-a9rns2rl98-image.png?lk3s=8e244e95&rcl=2026020318105644ABC0AE66C5D4008B1C&rrcfp=dafada99&x-expires=2086337456&x-signature=l6zGGOlMWtaporKf9B0ABpUBqOk%3D" 
-         alt="蔚蓝海工贸有限公司LOGO" 
-         style="background: transparent; height: 270px; width: auto; object-fit: contain;">
-</div>
+            <!-- 核心：你最后指定的LOGO图片，直链完整，无截断，270px放大显示 -->
+            <div class="logo">
+                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/a1983d0afb5d4b14b77a72a7b12b15c0.png~tplv-a9rns2rl98-image.png?lk3s=8e244e95&rcl=2026020319260861CCC863B5DB2300F5F0&rrcfp=dafada99&x-expires=2086341968&x-signature=2Q9vDUXhOi3SE9a1vox2rUT7vHU%3D" alt="蔚蓝海工贸有限公司LOGO">
+            </div>
+            <!-- 导航菜单 -->
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home">首页</a></li>
                 <li><a href="#car">车源中心</a></li>
@@ -561,24 +557,23 @@
                 <li><a href="#cert">公司资质</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
+            <!-- 汉堡菜单 -->
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
     </header>
 
+    <!-- 轮播图 -->
     <section class="banner" id="home">
         <div class="banner-slide active">
             <img src="https://picsum.photos/1920/1080?random=1" alt="二手车出口港口发车">
-            <!-- 替换注释：将上方picsum.photos地址替换为你的真实图片直链，尺寸建议1920*1080 -->
         </div>
         <div class="banner-slide">
             <img src="https://picsum.photos/1920/1080?random=2" alt="精品二手车源展示">
-            <!-- 替换注释：同上，替换为你的车源合集图 -->
         </div>
         <div class="banner-slide">
             <img src="https://picsum.photos/1920/1080?random=3" alt="Besty-G公司实景">
-            <!-- 替换注释：同上，替换为你的公司实景图 -->
         </div>
         <div class="banner-text">
             <h1>Besty-G 专业二手车出口服务商</h1>
@@ -587,6 +582,7 @@
         </div>
     </section>
 
+    <!-- 核心优势 -->
     <section class="advantage">
         <div class="container">
             <h2 class="section-title">核心优势</h2>
@@ -615,6 +611,7 @@
         </div>
     </section>
 
+    <!-- 热门车源 -->
     <section class="car" id="car">
         <div class="container">
             <h2 class="section-title">热门车源推荐</h2>
@@ -622,7 +619,6 @@
                 <div class="car-card">
                     <div class="car-img">
                         <img src="https://picsum.photos/400/200?random=10" alt="丰田卡罗拉">
-                        <!-- 替换注释：替换为该车源高清实拍图，尺寸建议400*200 -->
                     </div>
                     <div class="car-info">
                         <h4>丰田 卡罗拉</h4>
@@ -676,6 +672,7 @@
         </div>
     </section>
 
+    <!-- 服务流程 -->
     <section class="process" id="process">
         <div class="container">
             <h2 class="section-title">出口服务流程</h2>
@@ -714,6 +711,7 @@
         </div>
     </section>
 
+    <!-- 公司资质 -->
     <section class="cert" id="cert">
         <div class="container">
             <h2 class="section-title">公司资质</h2>
@@ -734,43 +732,37 @@
         </div>
     </section>
 
+    <!-- 联系我们（补全所有信息） -->
     <section class="contact-wrap" id="contact">
         <div class="container">
             <h2 class="section-title">联系我们</h2>
             <div class="contact">
                 <div class="contact-info">
                     <h3>随时为您服务</h3>
-                    <!-- 香港业务电话 -->
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <p>业务电话（香港）：<span>+85 64813920</span></p>
                     </div>
-                    <!-- 大陆业务电话 -->
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <p>业务电话（大陆）：<span>+86 13588869839</span></p>
                     </div>
-                    <!-- WhatsApp -->
                     <div class="contact-item">
                         <i class="fab fa-whatsapp"></i>
                         <p>WhatsApp：<span>+85 64813920</span></p>
                     </div>
-                    <!-- 商务邮箱 -->
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <p>商务邮箱：<span>finance@besty-g.com</span></p>
                     </div>
-                    <!-- 香港公司地址 -->
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <p>公司地址（香港）：<span>香港九龍尖沙咀漆咸道南 87-105 號百利商業中心 1021 室 UNIT 1021,BEVERLEY COMMERCIAL CENTRE,87-105 CHATHAM ROAD SOUTH, TSIM SHA TSUI,KOWLOON</span></p>
                     </div>
-                    <!-- 大陆公司地址 -->
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <p>公司地址（大陆）：<span>杭州市西湖区云州国际中心2号楼502</span></p>
                     </div>
-                    <!-- 出口地区 -->
                     <div class="contact-item">
                         <i class="fas fa-globe"></i>
                         <p>出口地区：<span>乌兹别克斯坦、南非、尼日利亚、中东、东南亚等</span></p>
@@ -789,12 +781,14 @@
         </div>
     </section>
 
+    <!-- 页脚 -->
     <footer>
         <div class="container">
             <p>© 2026 <span>Besty-G</span> 版权所有 | 域名：www.besty-g.com | 乌兹别克斯坦/南非/尼日利亚等地区二手车出口服务商</p>
         </div>
     </footer>
 
+    <!-- 脚本：汉堡菜单+轮播图+平滑滚动 -->
     <script>
         // 汉堡菜单交互
         const hamburger = document.getElementById('hamburger');
@@ -813,7 +807,7 @@
             });
         });
 
-        // 轮播图自动切换
+        // 轮播图自动切换（3.5秒/次，体验舒适）
         const slides = document.querySelectorAll('.banner-slide');
         let currentSlide = 0;
         function showSlide(index) {
@@ -826,7 +820,7 @@
             currentSlide++;
             showSlide(currentSlide);
         }
-        setInterval(nextSlide, 3500); // 3.5秒一次轮播，体验更舒适
+        setInterval(nextSlide, 3500);
 
         // 页面平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -842,16 +836,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
