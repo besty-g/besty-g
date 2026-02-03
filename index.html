@@ -83,25 +83,26 @@
             width: 100%;
             z-index: 999;
         }
-        .nav-wrap {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100px; /* 微调高度适配LOGO */
-        }
+    .nav-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 260px; /* 比LOGO高20px，留足上下间距 */
+}
     
     /* 专属LOGO样式：适配新LOGO，放大且清晰 */
+/* 专属LOGO样式：PC端放大3倍，清晰显示，透明底不变形 */
 .logo {
-    height: 90px; /* 放大LOGO容器，让新LOGO完整显示 */
-    width: auto;
+    height: 240px; /* 3倍放大核心高度，清晰显示LOGO文字 */
     display: flex;
     align-items: center;
+    padding: 10px 0; /* 上下留间距，不顶满导航栏 */
 }
 .logo img {
     height: 100%;
     width: auto;
-    object-fit: contain;
-    background: transparent; /* 强制去除图片白底（若图床已处理透明底，可省略） */
+    object-fit: contain; /* 强制原比例显示，文字绝对清晰 */
+    background: transparent; /* 彻底去除白底，适配导航栏 */
 }
         .nav-menu {
             display: flex;
@@ -549,7 +550,7 @@
         <div class="container nav-wrap">
             <!-- 你的专属LOGO图片，尺寸自适应 -->
             <div class="logo">
-            <img src="https://picsum.photos/200/80" alt="蔚蓝海工贸有限公司LOGO" style="background: transparent;">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/2e7cd4bbadd8435ea3901c47bffdfc81.png~tplv-a9rns2rl98-image.png?lk3s=8e244e95&rcl=20260203190052D8FE83F599F37400D12D&rrcfp=dafada99&x-expires=2086340452&x-signature=hf8I5nd5cRvx%2BE6fUlgSOq99aAI%3D" alt="蔚蓝海工贸有限公司LOGO" style="background: transparent;">
     <!-- 注意：把src替换为你新LOGO的真实图床直链，style="background: transparent;"是为了去除白底 -->
             </div>
             <ul class="nav-menu" id="navMenu">
@@ -840,6 +841,7 @@
     </script>
 </body>
 </html>
+
 
 
 
