@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<!-- 网页基础设置：UTF-8编码、自适应设备视口 -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 网站标题，可替换为你的公司专属标题 -->
+    <title>Besty-G - 中国专业二手车出口服务商 | 出口东南亚/非洲/中东</title>
+    <!-- 引入图标库（导航汉堡菜单、联系方式图标），免费无广告 -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式重置：消除浏览器默认边距、设置统一字体 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        /* 全局变量：主色调（外贸蓝）、辅助色（深灰/浅灰），后续可一键修改配色 */
+        :root {
+            --primary: #165DFF; /* 主蓝色 */
+            --dark-gray: #333333; /* 深灰（正文） */
+            --light-gray: #f5f5f5; /* 浅灰（背景） */
+            --border-gray: #e5e5e5; /* 边框灰 */
+            --white: #ffffff; /* 白色 */
+        }
+        body {
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        /* 容器样式：限制页面最大宽度，居中显示，适配不同屏幕 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        /* 按钮通用样式：外贸风格，hover有渐变效果 */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0e4bdb;
+        }
+        /* 板块标题通用样式：居中，底部加蓝色下划线，统一间距 */
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        /* 板块通用间距：上下padding，区分不同板块 */
+        section {
+            padding: 60px 0;
+        }
+        /* 头部导航样式开始 */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999; /* 导航固定在顶部，不被其他内容遮挡 */
+        }
+        .nav-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        /* 网站logo：可替换为文字/图片，预留修改位置 */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        /* 电脑端导航菜单 */
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-menu a {
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        /* 手机端汉堡菜单：默认隐藏，小屏幕显示 */
+        .hamburger {
+            font-size: 24px;
+            color: var(--dark-gray);
+            cursor: pointer;
+            display: none;
+        }
+        /* 头部导航样式结束 */
+
+        /* 轮播图板块样式开始：占满屏幕宽度，适配全设备 */
+        .banner {
+            margin-top: 80px; /* 避开固定导航 */
+            width: 100%;
+            height: calc(100vh - 80px);
+            overflow: hidden;
+            position: relative;
+        }
+        .banner-slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        /* 轮播图激活状态：显示当前图片 */
+        .banner-slide.active {
+            opacity: 1;
+        }
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 图片自适应，不拉伸变形 */
+        }
+        /* 轮播图文字遮罩：半透明背景，突出文字 */
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--white);
+            text-align: center;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            padding: 30px 50px;
+            border-radius: 8px;
+        }
+        .banner-text h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .banner-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        /* 轮播图样式结束 */
+
+        /* 核心优势板块样式开始：4列布局，小屏幕自适应 */
+        .advantage {
+            background-color: var(--light-gray);
+        }
+        .advantage-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .advantage-item {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .advantage-item i {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .advantage-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .advantage-item:hover {
+            transform: translateY(-5px); /* 鼠标悬浮轻微上移 */
+        }
+        /* 核心优势板块样式结束 */
+
+        /* 热门车源板块样式开始：4列卡片，小屏幕自适应，悬浮阴影 */
+        .car-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+        .car-card {
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .car-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* 鼠标悬浮阴影加深 */
+        }
+        .car-img {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        .car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .car-card:hover .car-img img {
+            transform: scale(1.05); /* 鼠标悬浮图片轻微放大 */
+        }
+        .car-info {
+            padding: 20px;
+        }
+        .car-info h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        .car-info p {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #666;
+        }
+        .car-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--dark-gray);
+            margin-top: 15px;
+        }
+        /* 热门车源板块样式结束 */
+
+        /* 服务流程板块样式开始：步骤式布局，小屏幕自适应 */
+        .process {
+            background-color: var(--light-gray);
+        }
+        .process-list {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+        .process-item {
+            position: relative;
+        }
+        /* 步骤数字：蓝色圆形背景，白色数字 */
+        .process-num {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-weight: bold;
+        }
+        .process-item h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .process-item p {
+            font-size: 12px;
+            color: #666;
+        }
+        /* 步骤之间的连接线：小屏幕隐藏 */
+        .process-item::after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: calc(100% + 10px);
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            opacity: 0.3;
+        }
+        .process-item:last-child::after {
+            display: none; /* 最后一个步骤无连接线 */
+        }
+        /* 服务流程板块样式结束 */
+
+        /* 公司资质板块样式开始：3列布局，展示资质图片 */
+        .cert-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .cert-item img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border: 1px solid var(--border-gray);
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .cert-item p {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        /* 公司资质板块样式结束 */
+
+        /* 联系我们板块样式开始：双列布局，左侧信息，右侧表单（简易版） */
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .contact-info h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        .contact-item i {
+            font-size: 20px;
+            color: var(--primary);
+            width: 30px;
+            text-align: center;
+        }
+        /* 简易咨询表单：适配外贸，收集核心信息 */
+        .contact-form {
+            background-color: var(--light-gray);
+            padding: 30px;
+            border-radius: 8px;
+        }
+        .contact-form h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: var(--primary); /* 输入框聚焦变主色 */
+        }
+        textarea.form-input {
+            height: 120px;
+            resize: none; /* 禁止拖动文本框 */
+        }
+        /* 联系我们板块样式结束 */
+
+        /* 底部版权样式开始：深色背景，居中文字 */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 30px;
+        }
+        footer p {
+            font-size: 14px;
+        }
+        /* 底部版权样式结束 */
+
+        /* 响应式适配：屏幕宽度≤992px（平板/大屏手机） */
+        @media (max-width: 992px) {
+            .advantage-list, .car-list {
+                grid-template-columns: repeat(2, 1fr); /* 2列布局 */
+            }
+            .process-list {
+                grid-template-columns: repeat(3, 1fr); /* 3列布局 */
+                gap: 30px;
+            }
+            .process-item {
+                margin-bottom: 20px;
+            }
+            .process-item::after {
+                display: none; /* 隐藏连接线 */
+            }
+            .contact {
+                grid-template-columns: 1fr; /* 1列布局 */
+            }
+        }
+
+        /* 响应式适配：屏幕宽度≤768px（手机） */
+        @media (max-width: 768px) {
+            /* 手机端显示汉堡菜单，隐藏电脑端导航 */
+            .hamburger {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%; /* 初始隐藏在右侧 */
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                gap: 0;
+                padding: 30px 20px;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                z-index: 998;
+            }
+            /* 导航菜单激活：显示在右侧 */
+            .nav-menu.active {
+                right: 0;
+            }
+            .nav-menu li {
+                padding: 15px 0;
+                border-bottom: 1px solid var(--border-gray);
+            }
+            /* 轮播图文字适配手机 */
+            .banner-text h1 {
+                font-size: 24px;
+            }
+            .banner-text p {
+                font-size: 16px;
+                padding: 0 10px;
+            }
+            /* 板块标题适配手机 */
+            .section-title {
+                font-size: 24px;
+            }
+            /* 所有板块改为1列布局 */
+            .advantage-list, .car-list, .process-list, .cert-list {
+                grid-template-columns: 1fr;
+            }
+            .cert-item img {
+                max-width: 250px;
+            }
+            section {
+                padding: 40px 0; /* 减小板块间距 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航：固定顶部，手机端汉堡菜单 -->
+    <header>
+        <div class="container nav-wrap">
+            <!-- 网站LOGO：可替换为图片，注释有替换方法 -->
+            <div class="logo">
+                <a href="/">Besty-G</a>
+                <!-- 若替换为图片LOGO，删除上方文字，取消下方注释并替换图片地址
+                <img src="https://picsum.photos/80/40" alt="Besty-GLOGO" style="height:40px;">
+                -->
+            </div>
+            <!-- 电脑端导航菜单 -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#car">车源中心</a></li>
+                <li><a href="#process">服务流程</a></li>
+                <li><a href="#cert">公司资质</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <!-- 手机端汉堡菜单图标 -->
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 轮播图板块：3张图，自动切换，预留图片替换位置 -->
+    <section class="banner" id="home">
+        <!-- 轮播图1：建议放公司实力/港口发车实拍 -->
+        <div class="banner-slide active">
+            <img src="https://picsum.photos/1920/1080?random=1" alt="二手车出口港口发车">
+            <!-- 替换注释：将上方picsum.photos地址替换为你的真实图片直链，尺寸建议1920*1080 -->
+        </div>
+        <!-- 轮播图2：建议放热门车源合集 -->
+        <div class="banner-slide">
+            <img src="https://picsum.photos/1920/1080?random=2" alt="精品二手车源展示">
+            <!-- 替换注释：同上，替换为你的车源合集图 -->
+        </div>
+        <!-- 轮播图3：建议放公司展厅/办公实景 -->
+        <div class="banner-slide">
+            <img src="https://picsum.photos/1920/1080?random=3" alt="Besty-G公司实景">
+            <!-- 替换注释：同上，替换为你的公司实景图 -->
+        </div>
+        <!-- 轮播图文字内容：可修改文案 -->
+        <div class="banner-text">
+            <h1>Besty-G 专业二手车出口服务商</h1>
+            <p>深耕中国二手车出口领域，主营轿车/SUV/货车/客车，直达东南亚、非洲、中东等地区，资质齐全·一手车源·门到门全程服务</p>
+            <a href="#contact" class="btn">立即咨询</a>
+        </div>
+    </section>
+
+    <!-- 核心优势板块：4大核心，贴合二手车出口业务 -->
+    <section class="advantage">
+        <div class="container">
+            <h2 class="section-title">核心优势</h2>
+            <div class="advantage-list">
+                <div class="advantage-item">
+                    <i class="fas fa-certificate"></i>
+                    <h3>资质齐全</h3>
+                    <p>拥有完整二手车出口备案、海关报关等资质，合规出口，全程无忧</p>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-car"></i>
+                    <h3>一手车源</h3>
+                    <p>直采丰田、本田、大众、长城等品牌精品车源，无中间商，价格优势明显</p>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-ship"></i>
+                    <h3>门到门物流</h3>
+                    <p>海运/陆运全覆盖，从中国仓库到海外目的地，全程物流跟踪，安全高效</p>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-file-invoice"></i>
+                    <h3>报关全包</h3>
+                    <p>专业团队代办报关、报检、单证等全套手续，省时省力，高效通关</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 热门车源板块：4款车，预留图片/参数/价格替换位置 -->
+    <section class="car" id="car">
+        <div class="container">
+            <h2 class="section-title">热门车源推荐</h2>
+            <div class="car-list">
+                <!-- 车源1：预留所有信息替换位置 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://picsum.photos/400/200?random=10" alt="丰田卡罗拉">
+                        <!-- 替换注释：替换为该车源高清实拍图，尺寸建议400*200 -->
+                    </div>
+                    <div class="car-info">
+                        <h4>丰田 卡罗拉</h4>
+                        <!-- 替换注释：修改为真实车型+品牌 -->
+                        <p>年份：2020款</p>
+                        <!-- 替换注释：修改为真实年份 -->
+                        <p>排量：1.8L</p>
+                        <!-- 替换注释：修改为真实排量 -->
+                        <p>里程：5万公里</p>
+                        <!-- 替换注释：修改为真实里程 -->
+                        <p>变速箱：自动</p>
+                        <!-- 替换注释：修改为真实变速箱类型 -->
+                        <div class="car-price">FOB报价：￥8.5万起</div>
+                        <!-- 替换注释：修改为真实FOB报价，可标注美元/人民币 -->
+                    </div>
+                </div>
+                <!-- 车源2 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://picsum.photos/400/200?random=11" alt="本田CR-V">
+                        <!-- 替换注释：同上 -->
+                    </div>
+                    <div class="car-info">
+                        <h4>本田 CR-V</h4>
+                        <p>年份：2019款</p>
+                        <p>排量：2.0L</p>
+                        <p>里程：6万公里</p>
+                        <p>变速箱：自动</p>
+                        <div class="car-price">FOB报价：￥12.8万起</div>
+                    </div>
+                </div>
+                <!-- 车源3 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://picsum.photos/400/200?random=12" alt="长城哈弗H6">
+                        <!-- 替换注释：同上 -->
+                    </div>
+                    <div class="car-info">
+                        <h4>长城 哈弗H6</h4>
+                        <p>年份：2021款</p>
+                        <p>排量：1.5T</p>
+                        <p>里程：4万公里</p>
+                        <p>变速箱：双离合</p>
+                        <div class="car-price">FOB报价：￥7.9万起</div>
+                    </div>
+                </div>
+                <!-- 车源4 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://picsum.photos/400/200?random=13" alt="大众朗逸">
+                        <!-- 替换注释：同上 -->
+                    </div>
+                    <div class="car-info">
+                        <h4>大众 朗逸</h4>
+                        <p>年份：2020款</p>
+                        <p>排量：1.5L</p>
+                        <p>里程：5.5万公里</p>
+                        <p>变速箱：手动</p>
+                        <div class="car-price">FOB报价：￥6.8万起</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务流程板块：6大核心步骤，贴合二手车出口全流程 -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title">出口服务流程</h2>
+            <div class="process-list">
+                <div class="process-item">
+                    <div class="process-num">1</div>
+                    <h4>客户选车</h4>
+                    <p>在线挑选车源，确认车型/配置/价格</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-num">2</div>
+                    <h4>确认订单</h4>
+                    <p>签订出口合同，支付定金，确认交货细节</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-num">3</div>
+                    <h4>车况检测</h4>
+                    <p>专业团队全面检测，出具车况报告</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-num">4</div>
+                    <h4>报关报检</h4>
+                    <p>代办全套报关、报检、单证手续</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-num">5</div>
+                    <h4>港口装船</h4>
+                    <p>车辆运输至港口，装船发货，物流跟踪</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-num">6</div>
+                    <h4>海外提车</h4>
+                    <p>目的地清关，客户提车，售后咨询保障</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 公司资质板块：3项核心资质，预留图片替换位置 -->
+    <section class="cert" id="cert">
+        <div class="container">
+            <h2 class="section-title">公司资质</h2>
+            <div class="cert-list">
+                <!-- 资质1：营业执照 -->
+                <div class="cert-item">
+                    <img src="https://picsum.photos/300/200?random=20" alt="公司营业执照">
+                    <!-- 替换注释：替换为营业执照高清扫描件，尺寸建议300*200 -->
+                    <p>企业营业执照</p>
+                </div>
+                <!-- 资质2：二手车出口备案证明 -->
+                <div class="cert-item">
+                    <img src="https://picsum.photos/300/200?random=21" alt="二手车出口备案证明">
+                    <!-- 替换注释：替换为二手车出口备案证明高清扫描件 -->
+                    <p>二手车出口备案证明</p>
+                </div>
+                <!-- 资质3：海关报关资质 -->
+                <div class="cert-item">
+                    <img src="https://picsum.photos/300/200?random=22" alt="海关报关资质">
+                    <!-- 替换注释：替换为海关报关资质高清扫描件 -->
+                    <p>海关报关企业资质</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们板块：预留所有联系方式替换位置，含简易咨询表单 -->
+    <section class="contact-wrap" id="contact">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <div class="contact">
+                <div class="contact-info">
+                    <h3>随时为您服务</h3>
+                    <!-- 电话：替换为真实公司电话/海外业务电话 -->
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>业务电话：<span>【替换为你的真实电话】</span></p>
+                    </div>
+                    <!-- WhatsApp：外贸核心，替换为真实号码（含国际区号） -->
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <p>WhatsApp：<span>【替换为你的真实WhatsApp号，如+8613800138000】</span></p>
+                    </div>
+                    <!-- 邮箱：替换为真实业务邮箱 -->
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>商务邮箱：<span>【替换为你的真实邮箱，如info@besty-g.com】</span></p>
+                    </div>
+                    <!-- 地址：替换为真实公司地址/港口地址 -->
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>公司地址：<span>【替换为你的真实地址，如浙江省杭州市XX区XX路XX号】</span></p>
+                    </div>
+                    <!-- 出口地区：可根据业务修改 -->
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <p>出口地区：东南亚、非洲、中东（越南/泰国/尼日利亚/沙特等）</p>
+                    </div>
+                </div>
+                <!-- 简易咨询表单：客户可留言，后续可对接表单提交功能 -->
+                <div class="contact-form">
+                    <h4>在线咨询</h4>
+                    <input type="text" class="form-input" placeholder="您的姓名/公司名称*">
+                    <input type="text" class="form-input" placeholder="您的国家/地区*">
+                    <input type="text" class="form-input" placeholder="意向车型/需求*">
+                    <input type="text" class="form-input" placeholder="您的联系方式*">
+                    <textarea class="form-input" placeholder="请输入您的详细咨询内容..."></textarea>
+                    <button class="btn" style="width:100%;">提交咨询</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部版权：预留公司名称/域名替换位置 -->
+    <footer>
+        <div class="container">
+            <p>© 2026 【替换为你的公司全称】 版权所有 | 域名：www.besty-g.com | 专业二手车出口服务商</p>
+            <!-- 替换注释：将【替换为你的公司全称】改为真实公司名 -->
+        </div>
+    </footer>
+
+    <!-- JavaScript 交互：汉堡菜单、轮播图自动切换，代码带注释 -->
+    <script>
+        // 1. 手机端汉堡菜单交互
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        // 点击汉堡菜单，切换导航显示/隐藏
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // 汉堡菜单图标切换（菜单/关闭）
+            hamburger.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        // 点击导航链接，自动关闭手机端导航
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // 2. 轮播图自动切换功能
+        const slides = document.querySelectorAll('.banner-slide');
+        let currentSlide = 0; // 当前显示的轮播图索引
+        // 轮播图切换函数
+        function showSlide(index) {
+            // 隐藏所有轮播图
+            slides.forEach(slide => slide.classList.remove('active'));
+            // 显示指定索引的轮播图，处理边界（循环播放）
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+            slides[currentSlide].classList.add('active');
+        }
+        // 下一张轮播图
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+        // 自动切换：3秒切换一次，可修改时间（单位：毫秒）
+        setInterval(nextSlide, 3000);
+
+        // 3. 页面平滑滚动：点击导航链接，平滑跳转到对应板块
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // 阻止默认跳转
+                // 跳转到对应板块，距离顶部80px（避开固定导航）
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
