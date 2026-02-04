@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Besty-G - Professional Used Car Export Service Provider in China | Central Asia/Africa/Middle East/Russia/Southeast Asia</title>
+    <title>Besty-G - Professional Used Car Export Service Provider in China</title>
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -96,7 +96,7 @@
             background-color: var(--primary);
             color: var(--white);
         }
-        /* 头部导航：适配270px大LOGO，布局协调 */
+        /* 头部导航 */
         header {
             background-color: var(--white);
             box-shadow: var(--shadow);
@@ -110,22 +110,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 140px; /* 匹配270px LOGO，留20px间距 */
+            height: 140px;
             padding: 0 10px;
         }
-        /* LOGO样式：270px放大，强制原比例，透明底，不模糊 */
         .logo {
-            height: 120px; /* 你要求的放大尺寸，核心值 */
+            height: 120px;
             display: flex;
             align-items: center;
         }
         .logo img {
             height: 100%;
             width: auto;
-            object-fit: contain; /* 保证LOGO不变形、文字清晰 */
-            background: transparent !important; /* 彻底去除白底，优先级最高 */
+            object-fit: contain;
+            background: transparent !important;
         }
-        /* 导航菜单样式，适配大导航栏 */
         .nav-menu {
             display: flex;
             gap: 30px;
@@ -152,7 +150,6 @@
         .nav-menu a:hover::after {
             width: 100%;
         }
-        /* 汉堡菜单：仅手机端显示，适配 */
         .hamburger {
             font-size: 28px;
             color: var(--dark-gray);
@@ -160,9 +157,9 @@
             display: none;
             z-index: 999;
         }
-        /* 轮播图：适配大导航栏，顶部间距正确 */
+        /* 轮播图 */
         .banner {
-            margin-top: 120px; /* 与导航栏高度一致，避免被遮挡 */
+            margin-top: 120px;
             width: 100%;
             height: calc(100vh - 120px);
             overflow: hidden;
@@ -209,7 +206,7 @@
             max-width: 600px;
             line-height: 1.8;
         }
-        /* 核心优势：视觉优化，悬浮有层次 */
+        /* 核心优势 */
         .advantage {
             background-color: var(--light-gray);
         }
@@ -246,7 +243,7 @@
             color: #666;
             line-height: 1.7;
         }
-        /* 车源卡片：精致化，悬浮效果强化 */
+        /* 车源卡片 */
         .car-list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -306,19 +303,18 @@
             padding-top: 10px;
             border-top: 1px dashed var(--border-gray);
         }
-        /* 服务流程：修复步骤1无横线问题，样式统一 */
+        /* 服务流程 */
         .process {
             background-color: var(--light-gray);
         }
         .process-list {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 0; /* 移除gap，用内部间距控制，保证横线连续 */
+            gap: 0;
             text-align: center;
             position: relative;
             padding: 0 20px;
         }
-        /* 新增流程横线容器，确保所有步骤横线统一 */
         .process-list::before {
             content: "";
             position: absolute;
@@ -333,7 +329,7 @@
         .process-item {
             position: relative;
             padding: 0 15px;
-            z-index: 2; /* 确保步骤在横线上方 */
+            z-index: 2;
         }
         .process-num {
             width: 42px;
@@ -347,7 +343,7 @@
             font-size: 16px;
             box-shadow: 0 2px 8px rgba(22,93,255,0.3);
             position: relative;
-            z-index: 3; /* 确保数字圆在横线和文字上方 */
+            z-index: 3;
         }
         .process-item h4 {
             font-size: 16px;
@@ -359,11 +355,10 @@
             color: #666;
             line-height: 1.6;
         }
-        /* 移除原有单个步骤的横线，改用统一的容器横线 */
         .process-item::after {
             display: none;
         }
-        /* 资质板块：图片圆角，hover放大 */
+        /* 公司资质 */
         .cert-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -389,7 +384,7 @@
             font-weight: 500;
             color: #555;
         }
-        /* 联系板块：双地址/双电话，信息完整 */
+        /* 联系我们 - 核心修复：手机端icon和文字排版 */
         .contact-wrap {
             padding-bottom: 30px;
         }
@@ -407,18 +402,23 @@
         }
         .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 15px;
             margin-bottom: 25px;
             font-size: 16px;
             padding: 8px 0;
-            flex-wrap: nowrap;
         }
         .contact-item i {
             font-size: 22px;
             color: var(--primary);
-            width: 30px;
+            width: 24px;
             text-align: center;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .contact-item p {
+            flex: 1;
+            line-height: 1.6;
         }
         .contact-item span {
             font-weight: 500;
@@ -456,7 +456,7 @@
             height: 120px;
             resize: none;
         }
-        /* 底部：信息完整，样式协调 */
+        /* 底部 */
         footer {
             background-color: var(--dark-gray);
             color: #e0e0e0;
@@ -472,32 +472,30 @@
             color: var(--primary);
             font-weight: 500;
         }
-        /* 多语言内容控制 */
+        /* 多语言控制 - 核心修复：确保中文切换生效 */
         .cn-content {
-            display: none;
+            display: none !important;
         }
         .en-content {
-            display: block;
+            display: block !important;
         }
         body.cn .cn-content {
-            display: block;
+            display: block !important;
         }
         body.cn .en-content {
-            display: none;
+            display: none !important;
         }
-        /* 手机端适配：修复布局错乱问题，核心优化 */
+        /* 手机端适配 */
         @media (max-width: 768px) {
-            /* 语言切换按钮适配 */
             .lang-switch {
                 top: 15px;
                 right: 15px;
-                z-index: 1001; /* 高于导航栏 */
+                z-index: 1001;
             }
             .lang-btn {
                 padding: 6px 10px;
                 font-size: 14px;
             }
-            /* 手机端LOGO+导航栏恢复正常尺寸，避免遮挡 */
             .logo {
                 height: 60px !important;
             }
@@ -507,9 +505,8 @@
             }
             .banner {
                 margin-top: 80px !important;
-                height: 400px !important; /* 固定手机端轮播高度，避免占满屏幕 */
+                height: 400px !important;
             }
-            /* 手机端汉堡菜单显示，优化交互 */
             .hamburger {
                 display: block;
                 position: absolute;
@@ -538,7 +535,6 @@
                 padding: 18px 0;
                 border-bottom: 1px solid #f0f0f0;
             }
-            /* 轮播文字适配手机端 */
             .banner-text {
                 padding: 20px 25px;
                 width: 90%;
@@ -553,7 +549,6 @@
                 margin-bottom: 20px;
                 line-height: 1.6;
             }
-            /* 板块标题适配 */
             .section-title {
                 font-size: 22px;
                 margin-bottom: 25px;
@@ -561,14 +556,12 @@
             section {
                 padding: 30px 0;
             }
-            /* 所有列表改为单列，优化间距 */
             .advantage-list, .car-list, .process-list, .cert-list {
                 grid-template-columns: 1fr !important;
                 gap: 20px !important;
             }
-            /* 服务流程手机端优化 */
             .process-list::before {
-                display: none; /* 手机端隐藏横向线条 */
+                display: none;
             }
             .process-item {
                 padding: 15px 0;
@@ -580,15 +573,13 @@
             .process-num {
                 margin: 0 auto 15px;
             }
-            /* 车源卡片适配 */
             .car-img {
                 height: 180px;
             }
-            /* 资质图片适配 */
             .cert-item img {
                 max-width: 250px;
             }
-            /* 联系板块适配，调整顺序和间距 */
+            /* 手机端联系方式排版修复 */
             .contact {
                 grid-template-columns: 1fr;
                 gap: 25px;
@@ -601,13 +592,19 @@
                 padding: 20px;
             }
             .contact-item {
-                flex-wrap: wrap;
-                gap: 10px;
                 margin-bottom: 15px;
                 font-size: 14px;
+                gap: 10px;
+                align-items: center;
             }
             .contact-item i {
                 font-size: 18px;
+                width: 20px;
+                margin-top: 0;
+            }
+            .contact-item p {
+                font-size: 14px;
+                line-height: 1.5;
             }
         }
         /* 平板端适配 */
@@ -719,7 +716,7 @@
             <h2 class="section-title en-content">Popular Car Source Recommendations</h2>
             <h2 class="section-title cn-content">热门车源推荐</h2>
             <div class="car-list">
-                <!-- 比亚迪汉 - 匹配车型图片 -->
+                <!-- 比亚迪汉 -->
                 <div class="car-card">
                     <div class="car-img">
                         <img src="https://picsum.photos/400/200?byd-han-ev" alt="BYD Han EV">
@@ -739,7 +736,7 @@
                         <div class="car-price cn-content">FOB报价：￥8.5万起</div>
                     </div>
                 </div>
-                <!-- 理想L9 - 匹配车型图片 -->
+                <!-- 理想L9 -->
                 <div class="car-card">
                     <div class="car-img">
                         <img src="https://picsum.photos/400/200?li-auto-l9-erev" alt="Li Auto L9">
@@ -759,7 +756,7 @@
                         <div class="car-price cn-content">FOB报价：￥12.8万起</div>
                     </div>
                 </div>
-                <!-- 丰田卡罗拉 - 替换原深蓝SL03 -->
+                <!-- 丰田卡罗拉 -->
                 <div class="car-card">
                     <div class="car-img">
                         <img src="https://picsum.photos/400/200?toyota-corolla-used" alt="Toyota Corolla">
@@ -779,7 +776,7 @@
                         <div class="car-price cn-content">FOB报价：￥7.9万起</div>
                     </div>
                 </div>
-                <!-- 东风E70 - 匹配车型图片 -->
+                <!-- 东风E70 -->
                 <div class="car-card">
                     <div class="car-img">
                         <img src="https://picsum.photos/400/200?dongfeng-e70-ev" alt="Dongfeng E70">
@@ -897,7 +894,7 @@
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <p class="en-content">Business Phone (Mainland): <span>+86 13588869839</span></p>
-                        <p class="cn-content">业务电话（大陆）：<span>+86 13588869839</span></p>
+                        <p class="cn-content">业务电话（内地）：<span>+86 13588869839</span></p>
                     </div>
                     <div class="contact-item">
                         <i class="fab fa-whatsapp"></i>
@@ -907,17 +904,17 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <p class="en-content">Business Email: <span>finance@besty-g.com</span></p>
-                        <p class="cn-content">商务邮箱：<span>finance@besty-g.com</span></p>
+                        <p class="cn-content">业务邮箱：<span>finance@besty-g.com</span></p>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p class="en-content">Address (HK): <span>UNIT 1021,BEVERLEY COMMERCIAL CENTRE,87-105 CHATHAM ROAD SOUTH, TSIM SHA TSUI,KOWLOON</span></p>
-                        <p class="cn-content">公司地址（香港）：<span>香港九龍尖沙咀漆咸道南 87-105 號百利商業中心 1021 室</span></p>
+                        <p class="en-content">Address (HK): <span>UNIT 1021, BEVERLEY COMMERCIAL CENTRE, 87-105 CHATHAM ROAD SOUTH, TSIM SHA TSUI, KOWLOON</span></p>
+                        <p class="cn-content">地址（香港）：<span>九龙尖沙咀漆咸道南87-105号百利商业中心1021室</span></p>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <p class="en-content">Address (Mainland): <span>Room 502, Building 2, Yunzhou International Center, Xihu District, Hangzhou</span></p>
-                        <p class="cn-content">公司地址（大陆）：<span>杭州市西湖区云州国际中心2号楼502</span></p>
+                        <p class="cn-content">地址（内地）：<span>杭州市西湖区云州国际中心2号楼502室</span></p>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-globe"></i>
@@ -926,66 +923,53 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <h4 class="en-content">Online Consultation</h4>
-                    <h4 class="cn-content">在线咨询</h4>
-                    <input type="text" class="form-input" placeholder="Your Name/Company Name*" data-placeholder-cn="您的姓名/公司名称*">
-                    <input type="text" class="form-input" placeholder="Your Country/Region*" data-placeholder-cn="您的国家/地区*">
-                    <input type="text" class="form-input" placeholder="Intended Car Model/Requirements*" data-placeholder-cn="意向车型/需求*">
-                    <input type="text" class="form-input" placeholder="Your Contact Information*" data-placeholder-cn="您的联系方式*">
-                    <textarea class="form-input" placeholder="Please enter your detailed consultation content..."></textarea>
-                    <button class="btn en-content" style="width:100%;">Submit Consultation</button>
-                    <button class="btn cn-content" style="width:100%;">提交咨询</button>
+                    <h4 class="en-content">Leave Your Message</h4>
+                    <h4 class="cn-content">留言咨询</h4>
+                    <input type="text" class="form-input" placeholder="Your Name / 您的姓名">
+                    <input type="tel" class="form-input" placeholder="Phone Number / 联系电话">
+                    <input type="email" class="form-input" placeholder="Email Address / 电子邮箱">
+                    <input type="text" class="form-input" placeholder="Interested Car Model / 意向车型">
+                    <textarea class="form-input" placeholder="Your Message / 您的留言"></textarea>
+                    <button class="btn" style="width: 100%;">Submit / 提交</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 页脚 -->
+    <!-- 底部 -->
     <footer>
         <div class="container">
             <p class="en-content">© 2026 <span>Besty-G</span> All Rights Reserved | Domain: www.besty-g.com | Used Car Export Service Provider for Central Asia/Africa/Middle East/Russia/Southeast Asia</p>
-            <p class="cn-content">© 2026 <span>Besty-G</span> 版权所有 | 域名：www.besty-g.com | 中亚、非洲、中东、俄罗斯、东南亚等地区二手车出口服务商</p>
+            <p class="cn-content">© 2026 <span>Besty-G</span> 保留所有权利 | 域名：www.besty-g.com | 中亚/非洲/中东/俄罗斯/东南亚二手车出口服务商</p>
         </div>
     </footer>
 
-    <!-- 脚本 -->
+    <!-- 核心JS：语言切换 + 汉堡菜单 -->
     <script>
-        // 语言切换功能
+        // 语言切换功能 - 核心修复
         const langBtns = document.querySelectorAll('.lang-btn');
-        const htmlBody = document.querySelector('body');
-        const formInputs = document.querySelectorAll('.form-input[data-placeholder-cn]');
-
         langBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // 切换按钮状态
+            btn.addEventListener('click', function() {
+                // 移除所有按钮的active类
                 langBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                // 切换页面语言
-                const lang = btn.getAttribute('data-lang');
-                htmlBody.className = lang;
-                
-                // 切换表单占位符
-                formInputs.forEach(input => {
-                    if (lang === 'cn') {
-                        input.setAttribute('placeholder', input.getAttribute('data-placeholder-cn'));
-                    } else {
-                        input.setAttribute('placeholder', input.getAttribute('placeholder').replace(/.*\|/, ''));
-                    }
-                });
-
-                // 切换轮播按钮显示
-                document.querySelector('.btn.en-content').style.display = lang === 'en' ? 'inline-block' : 'none';
-                document.querySelector('.btn.cn-content').style.display = lang === 'cn' ? 'inline-block' : 'none';
-                
-                // 切换表单按钮显示
-                document.querySelector('.contact-form .btn.en-content').style.display = lang === 'en' ? 'block' : 'none';
-                document.querySelector('.contact-form .btn.cn-content').style.display = lang === 'cn' ? 'block' : 'none';
+                // 给当前点击的按钮添加active类
+                this.classList.add('active');
+                // 切换body的类名，控制语言显示
+                const lang = this.getAttribute('data-lang');
+                document.body.className = lang;
             });
         });
 
-        // 汉堡菜单交互
+        // 汉堡菜单功能
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
-        hamburger.addEventListener('click', () => {
-            navMenu.classList
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            // 切换汉堡/关闭图标
+            this.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+    </script>
+</body>
+</html>
