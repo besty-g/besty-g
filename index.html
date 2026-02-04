@@ -73,7 +73,7 @@
         section {
             padding: 50px 0;
         }
-        /* 语言切换按钮 */
+        /* 语言切换按钮 - 优化层级和布局 */
         .lang-switch {
             position: fixed;
             top: 20px;
@@ -150,12 +150,18 @@
         .nav-menu a:hover::after {
             width: 100%;
         }
+        /* 汉堡菜单 - PC端隐藏，手机端显示 + 优化层级避免被遮挡 */
         .hamburger {
             font-size: 28px;
             color: var(--dark-gray);
             cursor: pointer;
-            display: none;
-            z-index: 1001; /* 提升层级，解决被遮挡问题 */
+            display: none; /* PC端默认隐藏 */
+            z-index: 1002; /* 高于语言切换按钮和导航菜单 */
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         /* 轮播图 */
         .banner {
@@ -489,7 +495,7 @@
         @media (max-width: 768px) {
             .lang-switch {
                 top: 15px;
-                right: 15px;
+                right: 60px; /* 给汉堡菜单留出空间 */
                 z-index: 1001;
             }
             .lang-btn {
@@ -507,13 +513,17 @@
                 margin-top: 80px !important;
                 height: 400px !important;
             }
+            /* 手机端汉堡菜单显示 + 优化布局 */
             .hamburger {
-                display: block;
+                display: flex; /* 手机端强制显示 */
                 position: absolute;
                 right: 20px;
                 top: 50%;
                 transform: translateY(-50%);
-                z-index: 1001; /* 确保手机端汉堡菜单层级最高 */
+                z-index: 1002; /* 确保最高层级 */
+                background: var(--white);
+                border-radius: 4px;
+                padding: 2px;
             }
             .nav-menu {
                 position: fixed;
@@ -620,6 +630,16 @@
             }
             .cert-list {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            /* 平板端也显示汉堡菜单（可选，如需平板也用菜单可保留） */
+            .hamburger {
+                display: none; /* 平板端如需隐藏可保留，如需显示改为flex */
+            }
+        }
+        /* PC端样式 - 强制隐藏汉堡菜单 */
+        @media (min-width: 993px) {
+            .hamburger {
+                display: none !important; /* PC端彻底隐藏 */
             }
         }
     </style>
@@ -878,7 +898,7 @@
         </div>
     </section>
 
-    <!-- 联系我们 -->
+    <!-- 联系我们 - 修复表单字段为5项 -->
     <section class="contact-wrap" id="contact">
         <div class="container">
             <h2 class="section-title en-content">Contact Us</h2>
@@ -917,93 +937,78 @@
                         <p class="en-content">Address (Mainland): <span>Room 502, Building 2, Yunzhou International Center, Xihu District, Hangzhou</span></p>
                         <p class="cn-content">地址（内地）：<span>杭州市西湖区云州国际中心2号楼502室</span></p>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-globe"></i>
-                        <p class="en-content">Export Regions: <span>Central Asia, Africa, Middle East, Russia, Southeast Asia, etc.</span></p>
-                        <p class="cn-content">出口地区：<span>中亚、非洲、中东、俄罗斯、东南亚等</span></p>
-                    </div>
                 </div>
                 <div class="contact-form">
-                    <h4 class="en-content">Leave Your Message</h4>
-                    <h4 class="cn-content">留言咨询</h4>
+                    <h4 class="en-content">Leave Your Inquiry</h4>
+                    <h4 class="cn-content">留下您的咨询</h4>
+                    <!-- 5项表单字段：姓名、电话/WhatsApp、邮箱、意向车型、留言 -->
                     <input type="text" class="form-input" placeholder="Your Name / 您的姓名">
-                    <input type="tel" class="form-input" placeholder="Phone Number / 联系电话">
-                    <input type="email" class="form-input" placeholder="Email Address / 电子邮箱">
+                    <input type="text" class="form-input" placeholder="Phone/WhatsApp / 电话/WhatsApp">
+                    <input type="email" class="form-input" placeholder="Email / 邮箱">
                     <input type="text" class="form-input" placeholder="Interested Car Model / 意向车型">
-                    <textarea class="form-input" placeholder="Your Message / 您的留言"></textarea>
-                    <button class="btn" style="width: 100%;">Submit / 提交</button>
+                    <textarea class="form-input" placeholder="Message / 留言内容"></textarea>
+                    <button class="btn" style="width:100%;">
+                        <span class="en-content">Submit Inquiry</span>
+                        <span class="cn-content">提交咨询</span>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 底部 -->
     <footer>
-        <div class="container">
-            <p class="en-content">© 2026 <span>Besty-G</span> All Rights Reserved | Domain: www.besty-g.com | Used Car Export Service Provider for Central Asia/Africa/Middle East/Russia/Southeast Asia</p>
-            <p class="cn-content">© 2026 <span>Besty-G</span> 保留所有权利 | 域名：www.besty-g.com | 中亚/非洲/中东/俄罗斯/东南亚二手车出口服务商</p>
-        </div>
+        <p class="en-content">© 2025 Besty-G. All Rights Reserved. Professional Used Car Export Service Provider in China</p>
+        <p class="cn-content">© 2025 Besty-G 版权所有 中国专业二手车出口服务商</p>
     </footer>
 
-    <!-- 核心JS：语言切换 + 汉堡菜单 -->
     <script>
-        // 语言切换功能 - 核心修复
+        // 语言切换逻辑
         const langBtns = document.querySelectorAll('.lang-btn');
         langBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // 移除所有按钮的active类
-                langBtns.forEach(b => b.classList.remove('active'));
-                // 给当前点击的按钮添加active类
-                this.classList.add('active');
-                // 切换body的类名，控制语言显示
-                const lang = this.getAttribute('data-lang');
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
                 document.body.className = lang;
+                // 切换激活状态
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
             });
         });
 
-        // 汉堡菜单功能
+        // 汉堡菜单逻辑
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
-        const navLinks = navMenu.querySelectorAll('a'); // 获取所有导航链接
-
-        // 汉堡菜单切换
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            // 切换汉堡/关闭图标
-            this.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            // 切换图标（可选）
+            const icon = hamburger.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
 
-        // 修复：点击导航链接后自动关闭菜单并滚动到对应内容
+        // 轮播图逻辑（保留原有功能）
+        const slides = document.querySelectorAll('.banner-slide');
+        let currentSlide = 0;
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        setInterval(nextSlide, 5000);
+
+        // 导航链接点击关闭菜单（手机端）
+        const navLinks = document.querySelectorAll('.nav-menu a');
         navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                // 关闭菜单
-                navMenu.classList.remove('active');
-                // 恢复汉堡图标
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-                
-                // 平滑滚动到锚点（可选，提升体验）
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80, // 偏移80px避开固定头部
-                        behavior: 'smooth'
-                    });
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 }
             });
-        });
-
-        // 修复：点击页面空白处关闭菜单（可选，提升体验）
-        document.addEventListener('click', function(e) {
-            const isClickInsideMenu = navMenu.contains(e.target);
-            const isClickOnHamburger = hamburger.contains(e.target);
-            
-            if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            }
         });
     </script>
 </body>
