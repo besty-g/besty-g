@@ -27,17 +27,15 @@
             line-height: 1.6;
             background-color: var(--white);
             scroll-behavior: smooth;
-            /* 解决文字错乱：强制统一渲染 */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        /* 容器全局居中，解决排版错位 */
+        /* 全局居中容器 */
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
-            /* 确保容器内元素不溢出 */
             overflow: hidden;
         }
         a {
@@ -87,7 +85,7 @@
         section {
             padding: 60px 0;
         }
-        /* 语言切换按钮 - 固定右上角，不遮挡内容 */
+        /* 语言切换按钮 */
         .language-switch {
             position: fixed;
             top: 20px;
@@ -122,7 +120,7 @@
         .lang-btn.active:hover {
             background-color: #0e4bdb;
         }
-        /* 头部导航 - 固定顶部，确保居中 */
+        /* 头部导航 - 全局居中 */
         header {
             background-color: var(--white);
             box-shadow: var(--shadow);
@@ -138,12 +136,10 @@
             align-items: center;
             height: 140px;
             padding: 0 10px;
-            /* 确保导航内容居中 */
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
-        /* LOGO样式 - 确保居中显示 */
         .logo {
             height: 120px;
             display: flex;
@@ -155,7 +151,6 @@
             object-fit: contain;
             background: transparent !important;
         }
-        /* 导航菜单 - 解决错位 */
         .nav-menu {
             display: flex;
             gap: 30px;
@@ -184,7 +179,6 @@
         .nav-menu a:hover::after {
             width: 100%;
         }
-        /* 汉堡菜单 - 仅手机端显示 */
         .hamburger {
             font-size: 28px;
             color: var(--dark-gray);
@@ -192,9 +186,9 @@
             display: none;
             z-index: 999;
         }
-        /* 轮播图 - 解决遮挡，确保居中 */
+        /* 轮播图 - 居中+内容匹配 */
         .banner {
-            margin-top: 140px; /* 与导航高度一致，避免被遮挡 */
+            margin-top: 140px;
             width: 100%;
             height: calc(100vh - 140px);
             overflow: hidden;
@@ -217,7 +211,7 @@
             height: 100%;
             object-fit: cover;
         }
-        /* 轮播文案 - 确保居中不错位 */
+        /* 轮播文案 - 强制居中 */
         .banner-text {
             position: absolute;
             top: 50%;
@@ -232,6 +226,7 @@
             backdrop-filter: blur(5px);
             max-width: 800px;
             width: 90%;
+            margin: 0 auto;
         }
         .banner-text h1 {
             font-size: 36px;
@@ -245,7 +240,7 @@
             line-height: 1.8;
             opacity: 0.95;
         }
-        /* 核心优势 - 解决排版错乱 */
+        /* 核心优势 - 居中布局 */
         .advantage {
             background-color: var(--light-gray);
         }
@@ -253,6 +248,9 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .advantage-item {
             text-align: center;
@@ -283,11 +281,14 @@
             line-height: 1.7;
             font-size: 14px;
         }
-        /* 车源模块 - 确保卡片居中 */
+        /* 车源模块 - 图片匹配+居中 */
         .car-list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .car-card {
             border: 1px solid var(--border-gray);
@@ -343,7 +344,7 @@
             padding-top: 10px;
             border-top: 1px dashed var(--border-gray);
         }
-        /* 服务流程 - 解决错位 */
+        /* 服务流程 - 居中 */
         .process {
             background-color: var(--light-gray);
         }
@@ -351,6 +352,9 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
         }
         .process-item {
@@ -392,11 +396,14 @@
         .process-item:last-child::after {
             display: none;
         }
-        /* 资质模块 - 确保居中 */
+        /* 资质模块 - 图片匹配+居中 */
         .cert-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
         }
         .cert-item img {
@@ -409,6 +416,7 @@
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
             background: var(--white);
+            margin: 0 auto;
         }
         .cert-item img:hover {
             transform: scale(1.03);
@@ -420,7 +428,7 @@
             font-weight: 500;
             color: #555;
         }
-        /* 联系模块 - 解决双列错位 */
+        /* 联系模块 - 全局居中 */
         .contact-wrap {
             padding-bottom: 30px;
         }
@@ -428,13 +436,17 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            align-items: start; /* 改为顶部对齐，避免错位 */
+            align-items: start;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .contact-info h3 {
             font-size: 24px;
             color: var(--primary);
             margin-bottom: 30px;
             font-weight: 600;
+            text-align: left;
         }
         .contact-item {
             display: flex;
@@ -455,7 +467,6 @@
             font-weight: 500;
             color: var(--dark-gray);
         }
-        /* 表单 - 确保宽度100% */
         .contact-form {
             background-color: var(--white);
             padding: 35px;
@@ -497,7 +508,7 @@
             resize: none;
             line-height: 1.6;
         }
-        /* 页脚 - 确保居中 */
+        /* 页脚 - 居中 */
         footer {
             background-color: var(--dark-gray);
             color: #e0e0e0;
@@ -508,12 +519,15 @@
         footer p {
             font-size: 14px;
             line-height: 1.8;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         footer p span {
             color: var(--primary);
             font-weight: 500;
         }
-        /* 多语言控制 - 确保默认显示英文 */
+        /* 多语言控制 */
         .cn-content {
             display: none;
         }
@@ -637,9 +651,7 @@
         }
     </style>
 </head>
-<!-- 确保body默认class为en，默认显示英文 -->
 <body class="en">
-    <!-- 语言切换按钮 -->
     <div class="language-switch">
         <button class="lang-btn" data-lang="cn">中文</button>
         <button class="lang-btn active" data-lang="en">English</button>
@@ -647,11 +659,9 @@
 
     <header>
         <div class="nav-wrap">
-            <!-- LOGO -->
             <div class="logo">
                 <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/eb22818cfdc943aa9dbc63c9123dfbb7.png~tplv-a9rns2rl98-image.png?lk3s=8e244e95&rcl=20260203195347D75577E2FAE3D1013FB6&rrcfp=dafada99&x-expires=2086343627&x-signature=sVoQ4IRWCloVZLRD7s9WwjFRLhA%3D" alt="Besty-G LOGO">
             </div>
-            <!-- 导航菜单 -->
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home"><span class="cn-content">首页</span><span class="en-content">Home</span></a></li>
                 <li><a href="#car"><span class="cn-content">车源中心</span><span class="en-content">Car Sources</span></a></li>
@@ -659,14 +669,13 @@
                 <li><a href="#cert"><span class="cn-content">公司资质</span><span class="en-content">Company Qualifications</span></a></li>
                 <li><a href="#contact"><span class="cn-content">联系我们</span><span class="en-content">Contact Us</span></a></li>
             </ul>
-            <!-- 汉堡菜单 -->
             <div class="hamburger" id="hamburger">
                 <<i class="fas fa-bars"></</i>
             </div>
         </div>
     </header>
 
-    <!-- 轮播图（稳定图片源） -->
+    <!-- 轮播图：二手车出口专属图 -->
     <section class="banner" id="home">
         <div class="banner-slide active">
             <img src="https://picsum.photos/id/1071/1920/1080" alt="Used car export port loading">
@@ -749,7 +758,7 @@
         </div>
     </section>
 
-    <!-- 热门车源 -->
+    <!-- 热门车源：图片匹配+汇率1:7 -->
     <section class="car" id="car">
         <div class="container">
             <h2 class="section-title">
@@ -788,7 +797,7 @@
                         </p>
                         <div class="car-price">
                             <span class="cn-content">FOB报价：￥8.5万起</span>
-                            <span class="en-content">FOB Price：Starting from ¥85,000</span>
+                            <span class="en-content">FOB Price：Starting from $12,143</span>
                         </div>
                     </div>
                 </div>
@@ -823,7 +832,7 @@
                         </p>
                         <div class="car-price">
                             <span class="cn-content">FOB报价：￥12.8万起</span>
-                            <span class="en-content">FOB Price：Starting from ¥128,000</span>
+                            <span class="en-content">FOB Price：Starting from $18,286</span>
                         </div>
                     </div>
                 </div>
@@ -858,7 +867,7 @@
                         </p>
                         <div class="car-price">
                             <span class="cn-content">FOB报价：￥7.9万起</span>
-                            <span class="en-content">FOB Price：Starting from ¥79,000</span>
+                            <span class="en-content">FOB Price：Starting from $11,286</span>
                         </div>
                     </div>
                 </div>
@@ -893,7 +902,7 @@
                         </p>
                         <div class="car-price">
                             <span class="cn-content">FOB报价：￥6.8万起</span>
-                            <span class="en-content">FOB Price：Starting from ¥68,000</span>
+                            <span class="en-content">FOB Price：Starting from $9,714</span>
                         </div>
                     </div>
                 </div>
@@ -979,7 +988,7 @@
         </div>
     </section>
 
-    <!-- 公司资质 -->
+    <!-- 公司资质：图片匹配 -->
     <section class="cert" id="cert">
         <div class="container">
             <h2 class="section-title">
@@ -1012,7 +1021,7 @@
         </div>
     </section>
 
-    <!-- 联系我们 -->
+    <!-- 联系我们：布局居中 -->
     <section class="contact-wrap" id="contact">
         <div class="container">
             <h2 class="section-title">
@@ -1101,7 +1110,6 @@
         </div>
     </section>
 
-    <!-- 页脚 -->
     <footer>
         <div class="container">
             <p>
@@ -1112,7 +1120,6 @@
     </footer>
 
     <script>
-        // 语言切换逻辑（确保默认英文）
         const langBtns = document.querySelectorAll('.lang-btn');
         const body = document.body;
         const hamburger = document.getElementById('hamburger');
@@ -1120,17 +1127,14 @@
         const slides = document.querySelectorAll('.banner-slide');
         const formInputs = document.querySelectorAll('.contact-form .form-input');
         
-        // 表单占位符配置
         const placeholders = {
             cn: ['您的姓名/公司名称', '您的国家/地区', '意向车型/需求', '您的联系方式', '请输入您的详细咨询内容...'],
             en: ['Your Name/Company Name', 'Your Country/Region', 'Intended Car Model/Requirements', 'Your Contact Information', 'Please enter your detailed consultation content...']
         };
 
-        // 读取本地存储，默认英文
         const saveLang = localStorage.getItem('bestyLang') || 'en';
         initLang(saveLang);
 
-        // 语言切换按钮绑定
         langBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const lang = btn.getAttribute('data-lang');
@@ -1139,29 +1143,22 @@
             });
         });
 
-        // 初始化语言
         function initLang(lang) {
             body.className = lang;
-            // 切换按钮激活状态
             langBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
-            // 更新页面标题
             document.title = lang === 'cn' 
                 ? 'Besty-G - 中国专业二手车出口服务商 | 中亚/非洲/中东/东南亚' 
                 : 'Besty-G - Professional Used Car Export Service Provider in China | Central Asia/Africa/Middle East/Southeast Asia';
-            // 更新html lang属性
             document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en-US';
-            // 更新表单占位符
             updateFormPlaceholders(lang);
         }
 
-        // 更新表单占位符
         function updateFormPlaceholders(lang) {
             formInputs.forEach((input, index) => {
                 input.placeholder = placeholders[lang][index];
             });
         }
 
-        // 汉堡菜单交互
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             hamburger.innerHTML = navMenu.classList.contains('active') 
@@ -1169,7 +1166,6 @@
                 : '<<i class="fas fa-bars"></</i>';
         });
 
-        // 导航链接点击关闭汉堡菜单
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
@@ -1177,7 +1173,6 @@
             });
         });
 
-        // 轮播图自动切换
         let currentSlide = 0;
         function showSlide(index) {
             slides.forEach(s => s.classList.remove('active'));
