@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Besty-G - Professional Used Car Export Service Provider in China | Central Asia/Africa/Middle East/Southeast Asia</title>
+    <title>Besty-G - Professional Used Car Export Service Provider in China | Central Asia/Africa/Middle East/Russia/Southeast Asia</title>
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,24 +19,17 @@
             --border-gray: #e5e5e5;
             --white: #ffffff;
             --shadow: 0 4px 12px rgba(0,0,0,0.06);
-            --hover-shadow: 0 8px 25px rgba(22,93,255,0.08);
-            --transition: all 0.3s ease;
         }
         body {
             color: var(--dark-gray);
             line-height: 1.6;
             background-color: var(--white);
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
-        /* 全局居中容器 */
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
-            overflow: hidden;
         }
         a {
             text-decoration: none;
@@ -53,14 +46,11 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: var(--transition);
-            font-size: 16px;
-            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .btn:hover {
             background-color: #0e4bdb;
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(22,93,255,0.2);
         }
         .section-title {
             text-align: center;
@@ -69,7 +59,6 @@
             position: relative;
             padding-bottom: 15px;
             font-weight: 600;
-            color: var(--dark-gray);
         }
         .section-title::after {
             content: "";
@@ -80,47 +69,34 @@
             width: 80px;
             height: 3px;
             background-color: var(--primary);
-            border-radius: 2px;
         }
         section {
-            padding: 60px 0;
+            padding: 50px 0;
         }
         /* 语言切换按钮 */
-        .language-switch {
+        .lang-switch {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1000;
             display: flex;
             gap: 10px;
-            background: rgba(255,255,255,0.95);
-            padding: 8px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
         }
         .lang-btn {
-            padding: 6px 15px;
+            padding: 8px 15px;
             border: 1px solid var(--primary);
             border-radius: 4px;
             background-color: var(--white);
             color: var(--primary);
             cursor: pointer;
-            transition: var(--transition);
-            font-size: 14px;
+            transition: all 0.3s ease;
             font-weight: 500;
         }
         .lang-btn.active {
             background-color: var(--primary);
             color: var(--white);
         }
-        .lang-btn:hover:not(.active) {
-            background-color: #f0f7ff;
-            border-color: #0e4bdb;
-        }
-        .lang-btn.active:hover {
-            background-color: #0e4bdb;
-        }
-        /* 头部导航 - 全局居中 */
+        /* 头部导航：适配270px大LOGO，布局协调 */
         header {
             background-color: var(--white);
             box-shadow: var(--shadow);
@@ -134,23 +110,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 140px;
+            height: 140px; /* 匹配270px LOGO，留20px间距 */
             padding: 0 10px;
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
+        /* LOGO样式：270px放大，强制原比例，透明底，不模糊 */
         .logo {
-            height: 120px;
+            height: 120px; /* 你要求的放大尺寸，核心值 */
             display: flex;
             align-items: center;
         }
         .logo img {
             height: 100%;
             width: auto;
-            object-fit: contain;
-            background: transparent !important;
+            object-fit: contain; /* 保证LOGO不变形、文字清晰 */
+            background: transparent !important; /* 彻底去除白底，优先级最高 */
         }
+        /* 导航菜单样式，适配大导航栏 */
         .nav-menu {
             display: flex;
             gap: 30px;
@@ -158,9 +133,8 @@
         .nav-menu a {
             font-size: 18px;
             font-weight: 500;
-            transition: var(--transition);
+            transition: color 0.3s ease;
             position: relative;
-            padding: 8px 0;
         }
         .nav-menu a:hover {
             color: var(--primary);
@@ -168,17 +142,17 @@
         .nav-menu a::after {
             content: "";
             position: absolute;
-            bottom: 0;
+            bottom: -4px;
             left: 0;
             width: 0;
             height: 2px;
             background-color: var(--primary);
             transition: width 0.3s ease;
-            border-radius: 1px;
         }
         .nav-menu a:hover::after {
             width: 100%;
         }
+        /* 汉堡菜单：仅手机端显示，适配 */
         .hamburger {
             font-size: 28px;
             color: var(--dark-gray);
@@ -186,11 +160,11 @@
             display: none;
             z-index: 999;
         }
-        /* 轮播图 - 居中+内容匹配 */
+        /* 轮播图：适配大导航栏，顶部间距正确 */
         .banner {
-            margin-top: 140px;
+            margin-top: 120px; /* 与导航栏高度一致，避免被遮挡 */
             width: 100%;
-            height: calc(100vh - 140px);
+            height: calc(100vh - 120px);
             overflow: hidden;
             position: relative;
         }
@@ -211,7 +185,6 @@
             height: 100%;
             object-fit: cover;
         }
-        /* 轮播文案 - 强制居中 */
         .banner-text {
             position: absolute;
             top: 50%;
@@ -220,27 +193,23 @@
             color: var(--white);
             text-align: center;
             z-index: 10;
-            background: rgba(0,0,0,0.6);
-            padding: 40px 60px;
-            border-radius: 12px;
-            backdrop-filter: blur(5px);
-            max-width: 800px;
-            width: 90%;
-            margin: 0 auto;
+            background: rgba(0,0,0,0.55);
+            padding: 35px 60px;
+            border-radius: 10px;
+            backdrop-filter: blur(2px);
         }
         .banner-text h1 {
             font-size: 36px;
             margin-bottom: 20px;
             font-weight: 700;
-            line-height: 1.3;
         }
         .banner-text p {
             font-size: 18px;
             margin-bottom: 30px;
+            max-width: 600px;
             line-height: 1.8;
-            opacity: 0.95;
         }
-        /* 核心优势 - 居中布局 */
+        /* 核心优势：视觉优化，悬浮有层次 */
         .advantage {
             background-color: var(--light-gray);
         }
@@ -248,9 +217,6 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
         .advantage-item {
             text-align: center;
@@ -258,13 +224,13 @@
             background-color: var(--white);
             border-radius: 10px;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            transition: all 0.3s ease;
             border-top: 3px solid transparent;
         }
         .advantage-item:hover {
             transform: translateY(-6px);
             border-top-color: var(--primary);
-            box-shadow: var(--hover-shadow);
+            box-shadow: 0 8px 20px rgba(22,93,255,0.08);
         }
         .advantage-item i {
             font-size: 38px;
@@ -279,26 +245,22 @@
         .advantage-item p {
             color: #666;
             line-height: 1.7;
-            font-size: 14px;
         }
-        /* 车源模块 - 图片匹配+居中 */
+        /* 车源卡片：精致化，悬浮效果强化 */
         .car-list {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
         .car-card {
             border: 1px solid var(--border-gray);
             border-radius: 10px;
             overflow: hidden;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             background-color: var(--white);
         }
         .car-card:hover {
-            box-shadow: var(--hover-shadow);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
             transform: translateY(-5px);
         }
         .car-img {
@@ -344,7 +306,7 @@
             padding-top: 10px;
             border-top: 1px dashed var(--border-gray);
         }
-        /* 服务流程 - 居中 */
+        /* 服务流程：间距清爽，适配 */
         .process {
             background-color: var(--light-gray);
         }
@@ -352,9 +314,6 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
             text-align: center;
         }
         .process-item {
@@ -396,14 +355,11 @@
         .process-item:last-child::after {
             display: none;
         }
-        /* 资质模块 - 图片匹配+居中 */
+        /* 资质板块：图片圆角，hover放大 */
         .cert-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
             text-align: center;
         }
         .cert-item img {
@@ -415,12 +371,9 @@
             border-radius: 8px;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
-            background: var(--white);
-            margin: 0 auto;
         }
         .cert-item img:hover {
             transform: scale(1.03);
-            box-shadow: var(--hover-shadow);
         }
         .cert-item p {
             margin-top: 15px;
@@ -428,7 +381,7 @@
             font-weight: 500;
             color: #555;
         }
-        /* 联系模块 - 全局居中 */
+        /* 联系板块：双地址/双电话，信息完整 */
         .contact-wrap {
             padding-bottom: 30px;
         }
@@ -436,34 +389,30 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            align-items: start;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
+            align-items: center;
         }
         .contact-info h3 {
             font-size: 24px;
             color: var(--primary);
             margin-bottom: 30px;
             font-weight: 600;
-            text-align: left;
         }
         .contact-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 15px;
             margin-bottom: 25px;
             font-size: 16px;
             padding: 8px 0;
+            flex-wrap: nowrap;
         }
         .contact-item i {
             font-size: 22px;
             color: var(--primary);
             width: 30px;
             text-align: center;
-            margin-top: 4px;
         }
-        .contact-item p span {
+        .contact-item span {
             font-weight: 500;
             color: var(--dark-gray);
         }
@@ -473,7 +422,6 @@
             border-radius: 10px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-gray);
-            width: 100%;
         }
         .contact-form h4 {
             font-size: 20px;
@@ -484,50 +432,39 @@
         }
         .form-input {
             width: 100%;
-            padding: 14px 18px;
-            margin-bottom: 20px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
             border: 1px solid var(--border-gray);
             border-radius: 6px;
             outline: none;
-            transition: var(--transition);
-            font-size: 15px;
-            color: var(--dark-gray);
-            background: #fafafa;
+            transition: all 0.3s ease;
+            font-size: 14px;
         }
         .form-input:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(22,93,255,0.1);
-            background: var(--white);
-        }
-        .form-input::placeholder {
-            color: #999;
-            font-size: 14px;
         }
         textarea.form-input {
             height: 120px;
             resize: none;
-            line-height: 1.6;
         }
-        /* 页脚 - 居中 */
+        /* 底部：信息完整，样式协调 */
         footer {
             background-color: var(--dark-gray);
             color: #e0e0e0;
             text-align: center;
-            padding: 40px 0;
-            margin-top: 30px;
+            padding: 35px 0;
+            margin-top: 0;
         }
         footer p {
             font-size: 14px;
             line-height: 1.8;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
         footer p span {
             color: var(--primary);
             font-weight: 500;
         }
-        /* 多语言控制 */
+        /* 多语言内容控制 */
         .cn-content {
             display: none;
         }
@@ -540,43 +477,18 @@
         body.cn .en-content {
             display: none;
         }
-        /* 平板端适配 */
-        @media (max-width: 992px) {
-            .advantage-list, .car-list {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            .process-list {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
-            }
-            .process-item {
-                margin-bottom: 20px;
-            }
-            .process-item::after {
-                display: none;
-            }
-            .cert-list {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .banner-text h1 {
-                font-size: 30px;
-            }
-            .banner-text p {
-                font-size: 16px;
-            }
-        }
-        /* 手机端适配 */
+        /* 手机端适配：核心！LOGO自动缩小，导航栏恢复正常，无遮挡 */
         @media (max-width: 768px) {
-            .language-switch {
+            /* 语言切换按钮适配 */
+            .lang-switch {
                 top: 15px;
                 right: 15px;
-                padding: 6px;
             }
             .lang-btn {
-                padding: 4px 12px;
-                font-size: 12px;
+                padding: 6px 10px;
+                font-size: 14px;
             }
+            /* 手机端LOGO+导航栏恢复正常尺寸 */
             .logo {
                 height: 60px !important;
             }
@@ -587,6 +499,7 @@
                 margin-top: 80px !important;
                 height: calc(100vh - 80px) !important;
             }
+            /* 手机端汉堡菜单显示 */
             .hamburger {
                 display: block;
             }
@@ -611,11 +524,17 @@
                 padding: 18px 0;
                 border-bottom: 1px solid #f0f0f0;
             }
-            .banner-text {
-                padding: 25px 30px;
-            }
+            /* 其他板块小屏适配 */
             .banner-text h1 {
                 font-size: 22px;
+            }
+            .banner-text p {
+                font-size: 15px;
+                padding: 0 5px;
+            }
+            .banner-text {
+                padding: 25px 30px;
+                width: 90%;
             }
             .section-title {
                 font-size: 24px;
@@ -633,277 +552,208 @@
             .advantage-item {
                 padding: 25px 15px;
             }
+            .contact-form {
+                padding: 25px;
+            }
             .contact {
                 grid-template-columns: 1fr;
-                gap: 30px;
             }
             .contact-info {
                 order: 2;
             }
             .contact-form {
                 order: 1;
-                padding: 25px;
             }
-            .form-input {
-                margin-bottom: 15px;
-                padding: 12px 15px;
+        }
+        /* 平板端适配 */
+        @media (max-width: 992px) {
+            .advantage-list, .car-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .process-list {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            .process-item {
+                margin-bottom: 20px;
+            }
+            .process-item::after {
+                display: none;
+            }
+            .cert-list {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body class="en">
-    <div class="language-switch">
-        <button class="lang-btn" data-lang="cn">中文</button>
-        <button class="lang-btn active" data-lang="en">English</button>
+    <!-- 语言切换按钮 -->
+    <div class="lang-switch">
+        <button class="lang-btn en-btn active" data-lang="en">English</button>
+        <button class="lang-btn cn-btn" data-lang="cn">中文</button>
     </div>
 
     <header>
-        <div class="nav-wrap">
+        <div class="container nav-wrap">
+            <!-- LOGO -->
             <div class="logo">
                 <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/eb22818cfdc943aa9dbc63c9123dfbb7.png~tplv-a9rns2rl98-image.png?lk3s=8e244e95&rcl=20260203195347D75577E2FAE3D1013FB6&rrcfp=dafada99&x-expires=2086343627&x-signature=sVoQ4IRWCloVZLRD7s9WwjFRLhA%3D" alt="Besty-G LOGO">
             </div>
+            <!-- 导航菜单 -->
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home"><span class="cn-content">首页</span><span class="en-content">Home</span></a></li>
-                <li><a href="#car"><span class="cn-content">车源中心</span><span class="en-content">Car Sources</span></a></li>
-                <li><a href="#process"><span class="cn-content">服务流程</span><span class="en-content">Service Process</span></a></li>
-                <li><a href="#cert"><span class="cn-content">公司资质</span><span class="en-content">Company Qualifications</span></a></li>
-                <li><a href="#contact"><span class="cn-content">联系我们</span><span class="en-content">Contact Us</span></a></li>
+                <li><a href="#home" class="en-content">Home</a><a href="#home" class="cn-content">首页</a></li>
+                <li><a href="#car" class="en-content">Car Sources</a><a href="#car" class="cn-content">车源中心</a></li>
+                <li><a href="#process" class="en-content">Service Process</a><a href="#process" class="cn-content">服务流程</a></li>
+                <li><a href="#cert" class="en-content">Company Qualifications</a><a href="#cert" class="cn-content">公司资质</a></li>
+                <li><a href="#contact" class="en-content">Contact Us</a><a href="#contact" class="cn-content">联系我们</a></li>
             </ul>
+            <!-- 汉堡菜单 -->
             <div class="hamburger" id="hamburger">
-                <<i class="fas fa-bars"></</i>
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </header>
 
-    <!-- 轮播图：二手车出口专属图 -->
+    <!-- 轮播图 -->
     <section class="banner" id="home">
         <div class="banner-slide active">
-            <img src="https://picsum.photos/id/1071/1920/1080" alt="Used car export port loading">
+            <img src="https://picsum.photos/1920/1080?car-export-port" alt="Used car export port delivery">
         </div>
         <div class="banner-slide">
-            <img src="https://picsum.photos/id/1072/1920/1080" alt="Premium used car showroom">
+            <img src="https://picsum.photos/1920/1080?used-electric-cars" alt="Boutique used electric car sources display">
         </div>
         <div class="banner-slide">
-            <img src="https://picsum.photos/id/1073/1920/1080" alt="International logistics for used cars">
+            <img src="https://picsum.photos/1920/1080?besty-g-office" alt="Besty-G company real scene">
         </div>
         <div class="banner-text">
-            <h1>
-                <span class="cn-content">Besty-G 专业二手车出口服务商</span>
-                <span class="en-content">Besty-G - Professional Used Car Export Service Provider</span>
-            </h1>
-            <p>
-                <span class="cn-content">深耕中国二手车出口领域，主营轿车/SUV/货车/客车，直达中亚、非洲、中东、东南亚等地区，资质齐全·一手车源·门到门物流·报关全包</span>
-                <span class="en-content">Deeply engaged in China's used car export field, mainly dealing in sedans/SUVs/trucks/buses, directly to Central Asia, Africa, the Middle East, Southeast Asia and other regions. Complete qualifications, direct car sources, door-to-door logistics, full customs declaration service.</span>
-            </p>
-            <a href="#contact" class="btn">
-                <span class="cn-content">立即咨询</span>
-                <span class="en-content">Consult Now</span>
-            </a>
+            <h1 class="en-content">Besty-G - Professional Used Car Export Service Provider</h1>
+            <h1 class="cn-content">Besty-G 专业二手车出口服务商</h1>
+            <p class="en-content">Deeply engaged in China's used car export field, specializing in sedans/SUVs/trucks/buses, directly to Central Asia, Africa, Middle East, Russia, Southeast Asia and other regions. Complete qualifications, direct car sources, door-to-door logistics, full customs clearance.</p>
+            <p class="cn-content">深耕中国二手车出口领域，主营轿车/SUV/货车/客车，直达中亚、非洲、中东、俄罗斯、东南亚等地区，资质齐全·一手车源·门到门物流·报关全包</p>
+            <a href="#contact" class="btn en-content">Consult Now</a>
+            <a href="#contact" class="btn cn-content">立即咨询</a>
         </div>
     </section>
 
     <!-- 核心优势 -->
     <section class="advantage">
         <div class="container">
-            <h2 class="section-title">
-                <span class="cn-content">核心优势</span>
-                <span class="en-content">Core Advantages</span>
-            </h2>
+            <h2 class="section-title en-content">Core Advantages</h2>
+            <h2 class="section-title cn-content">核心优势</h2>
             <div class="advantage-list">
                 <div class="advantage-item">
-                    <<i class="fas fa-certificate"></</i>
-                    <h3>
-                        <span class="cn-content">资质齐全</span>
-                        <span class="en-content">Complete Qualifications</span>
-                    </h3>
-                    <p>
-                        <span class="cn-content">拥有完整二手车出口备案、海关报关等资质，合规出口，全程无忧</span>
-                        <span class="en-content">Possess complete used car export filing, customs declaration qualifications, compliant export with worry-free whole process.</span>
-                    </p>
+                    <i class="fas fa-certificate"></i>
+                    <h3 class="en-content">Complete Qualifications</h3>
+                    <h3 class="cn-content">资质齐全</h3>
+                    <p class="en-content">Complete used car export filing, customs declaration and other qualifications, compliant export, worry-free whole process.</p>
+                    <p class="cn-content">拥有完整二手车出口备案、海关报关等资质，合规出口，全程无忧</p>
                 </div>
                 <div class="advantage-item">
-                    <<i class="fas fa-car"></</i>
-                    <h3>
-                        <span class="cn-content">一手车源</span>
-                        <span class="en-content">Direct Car Sources</span>
-                    </h3>
-                    <p>
-                        <span class="cn-content">直采丰田、本田、大众、长城等品牌精品车源，无中间商，价格优势明显</span>
-                        <span class="en-content">Direct procurement of high-quality cars from Toyota, Honda, Volkswagen, Great Wall, no middlemen with obvious price advantage.</span>
-                    </p>
+                    <i class="fas fa-car"></i>
+                    <h3 class="en-content">Direct Car Sources</h3>
+                    <h3 class="cn-content">一手车源</h3>
+                    <p class="en-content">Direct procurement of BYD, Li Auto, Deepal, Dongfeng and other brand boutique new energy vehicle sources, no middlemen, obvious price advantage.</p>
+                    <p class="cn-content">直采比亚迪、理想、深蓝、东风等品牌精品新能源车源，无中间商，价格优势明显</p>
                 </div>
                 <div class="advantage-item">
-                    <<i class="fas fa-ship"></</i>
-                    <h3>
-                        <span class="cn-content">门到门物流</span>
-                        <span class="en-content">Door-to-Door Logistics</span>
-                    </h3>
-                    <p>
-                        <span class="cn-content">海运/陆运全覆盖，从中国仓库到海外目的地，全程物流跟踪，安全高效</span>
-                        <span class="en-content">Full sea/land transportation coverage, full logistics tracking from China warehouse to overseas destination, safe and efficient.</span>
-                    </p>
+                    <i class="fas fa-ship"></i>
+                    <h3 class="en-content">Door-to-Door Logistics</h3>
+                    <h3 class="cn-content">门到门物流</h3>
+                    <p class="en-content">Full coverage of sea/land transportation, from Chinese warehouse to overseas destination, full logistics tracking, safe and efficient.</p>
+                    <p class="cn-content">海运/陆运全覆盖，从中国仓库到海外目的地，全程物流跟踪，安全高效</p>
                 </div>
                 <div class="advantage-item">
-                    <<i class="fas fa-file-invoice"></</i>
-                    <h3>
-                        <span class="cn-content">报关全包</span>
-                        <span class="en-content">Full Customs Declaration</span>
-                    </h3>
-                    <p>
-                        <span class="cn-content">专业团队代办报关、报检、单证等全套手续，省时省力，高效通关</span>
-                        <span class="en-content">Professional team handles full set of customs declaration, inspection and documents, saving time with efficient customs clearance.</span>
-                    </p>
+                    <i class="fas fa-file-invoice"></i>
+                    <h3 class="en-content">Full Customs Clearance</h3>
+                    <h3 class="cn-content">报关全包</h3>
+                    <p class="en-content">Professional team handles all customs declaration, inspection, documents and other procedures, saving time and effort, efficient customs clearance.</p>
+                    <p class="cn-content">专业团队代办报关、报检、单证等全套手续，省时省力，高效通关</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 热门车源：图片匹配+汇率1:7 -->
+    <!-- 热门车源 -->
     <section class="car" id="car">
         <div class="container">
-            <h2 class="section-title">
-                <span class="cn-content">热门车源推荐</span>
-                <span class="en-content">Recommended Hot Car Sources</span>
-            </h2>
+            <h2 class="section-title en-content">Popular Car Source Recommendations</h2>
+            <h2 class="section-title cn-content">热门车源推荐</h2>
             <div class="car-list">
                 <div class="car-card">
                     <div class="car-img">
-                        <img src="https://picsum.photos/id/1071/400/200" alt="Toyota Corolla">
+                        <img src="https://picsum.photos/400/200?byd-han" alt="BYD Han">
                     </div>
                     <div class="car-info">
-                        <h4>
-                            <span class="cn-content">丰田 卡罗拉</span>
-                            <span class="en-content">Toyota Corolla</span>
-                        </h4>
-                        <p>
-                            <span class="cn-content">年份：</span>
-                            <span class="en-content">Year：</span>
-                            <span>2020款 / 2020 Model</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">排量：</span>
-                            <span class="en-content">Displacement：</span>
-                            <span>1.8L</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">里程：</span>
-                            <span class="en-content">Mileage：</span>
-                            <span>5万公里 / 50,000 km</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">变速箱：</span>
-                            <span class="en-content">Transmission：</span>
-                            <span>自动 / Automatic</span>
-                        </p>
-                        <div class="car-price">
-                            <span class="cn-content">FOB报价：￥8.5万起</span>
-                            <span class="en-content">FOB Price：Starting from $12,143</span>
-                        </div>
+                        <h4 class="en-content">BYD Han</h4>
+                        <h4 class="cn-content">比亚迪 汉</h4>
+                        <p class="en-content">Year: <span>2022 Model</span></p>
+                        <p class="cn-content">年份：<span>2022款</span></p>
+                        <p class="en-content">Battery: <span>76.9kWh</span></p>
+                        <p class="cn-content">电池：<span>76.9kWh</span></p>
+                        <p class="en-content">Mileage: <span>30,000 km</span></p>
+                        <p class="cn-content">里程：<span>3万公里</span></p>
+                        <p class="en-content">Type: <span>EV</span></p>
+                        <p class="cn-content">类型：<span>纯电动</span></p>
+                        <div class="car-price en-content">FOB Price: $12,143起</div>
+                        <div class="car-price cn-content">FOB报价：￥8.5万起</div>
                     </div>
                 </div>
                 <div class="car-card">
                     <div class="car-img">
-                        <img src="https://picsum.photos/id/1072/400/200" alt="Honda CR-V">
+                        <img src="https://picsum.photos/400/200?li-auto-l9" alt="Li Auto L9">
                     </div>
                     <div class="car-info">
-                        <h4>
-                            <span class="cn-content">本田 CR-V</span>
-                            <span class="en-content">Honda CR-V</span>
-                        </h4>
-                        <p>
-                            <span class="cn-content">年份：</span>
-                            <span class="en-content">Year：</span>
-                            <span>2019款 / 2019 Model</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">排量：</span>
-                            <span class="en-content">Displacement：</span>
-                            <span>2.0L</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">里程：</span>
-                            <span class="en-content">Mileage：</span>
-                            <span>6万公里 / 60,000 km</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">变速箱：</span>
-                            <span class="en-content">Transmission：</span>
-                            <span>自动 / Automatic</span>
-                        </p>
-                        <div class="car-price">
-                            <span class="cn-content">FOB报价：￥12.8万起</span>
-                            <span class="en-content">FOB Price：Starting from $18,286</span>
-                        </div>
+                        <h4 class="en-content">Li Auto L9</h4>
+                        <h4 class="cn-content">理想 L9</h4>
+                        <p class="en-content">Year: <span>2021 Model</span></p>
+                        <p class="cn-content">年份：<span>2021款</span></p>
+                        <p class="en-content">Battery: <span>44.5kWh</span></p>
+                        <p class="cn-content">电池：<span>44.5kWh</span></p>
+                        <p class="en-content">Mileage: <span>40,000 km</span></p>
+                        <p class="cn-content">里程：<span>4万公里</span></p>
+                        <p class="en-content">Type: <span>EREV</span></p>
+                        <p class="cn-content">类型：<span>增程式</span></p>
+                        <div class="car-price en-content">FOB Price: $18,286起</div>
+                        <div class="car-price cn-content">FOB报价：￥12.8万起</div>
                     </div>
                 </div>
                 <div class="car-card">
                     <div class="car-img">
-                        <img src="https://picsum.photos/id/1073/400/200" alt="Great Wall Haval H6">
+                        <img src="https://picsum.photos/400/200?deepal-sl03" alt="Deepal SL03">
                     </div>
                     <div class="car-info">
-                        <h4>
-                            <span class="cn-content">长城 哈弗H6</span>
-                            <span class="en-content">Great Wall Haval H6</span>
-                        </h4>
-                        <p>
-                            <span class="cn-content">年份：</span>
-                            <span class="en-content">Year：</span>
-                            <span>2021款 / 2021 Model</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">排量：</span>
-                            <span class="en-content">Displacement：</span>
-                            <span>1.5T</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">里程：</span>
-                            <span class="en-content">Mileage：</span>
-                            <span>4万公里 / 40,000 km</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">变速箱：</span>
-                            <span class="en-content">Transmission：</span>
-                            <span>双离合 / Dual Clutch</span>
-                        </p>
-                        <div class="car-price">
-                            <span class="cn-content">FOB报价：￥7.9万起</span>
-                            <span class="en-content">FOB Price：Starting from $11,286</span>
-                        </div>
+                        <h4 class="en-content">Deepal SL03</h4>
+                        <h4 class="cn-content">深蓝 SL03</h4>
+                        <p class="en-content">Year: <span>2022 Model</span></p>
+                        <p class="cn-content">年份：<span>2022款</span></p>
+                        <p class="en-content">Battery: <span>58.5kWh</span></p>
+                        <p class="cn-content">电池：<span>58.5kWh</span></p>
+                        <p class="en-content">Mileage: <span>25,000 km</span></p>
+                        <p class="cn-content">里程：<span>2.5万公里</span></p>
+                        <p class="en-content">Type: <span>EV</span></p>
+                        <p class="cn-content">类型：<span>纯电动</span></p>
+                        <div class="car-price en-content">FOB Price: $11,286起</div>
+                        <div class="car-price cn-content">FOB报价：￥7.9万起</div>
                     </div>
                 </div>
                 <div class="car-card">
                     <div class="car-img">
-                        <img src="https://picsum.photos/id/1074/400/200" alt="Volkswagen Lavida">
+                        <img src="https://picsum.photos/400/200?dongfeng-e70" alt="Dongfeng E70">
                     </div>
                     <div class="car-info">
-                        <h4>
-                            <span class="cn-content">大众 朗逸</span>
-                            <span class="en-content">Volkswagen Lavida</span>
-                        </h4>
-                        <p>
-                            <span class="cn-content">年份：</span>
-                            <span class="en-content">Year：</span>
-                            <span>2020款 / 2020 Model</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">排量：</span>
-                            <span class="en-content">Displacement：</span>
-                            <span>1.5L</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">里程：</span>
-                            <span class="en-content">Mileage：</span>
-                            <span>5.5万公里 / 55,000 km</span>
-                        </p>
-                        <p>
-                            <span class="cn-content">变速箱：</span>
-                            <span class="en-content">Transmission：</span>
-                            <span>手动 / Manual</span>
-                        </p>
-                        <div class="car-price">
-                            <span class="cn-content">FOB报价：￥6.8万起</span>
-                            <span class="en-content">FOB Price：Starting from $9,714</span>
-                        </div>
+                        <h4 class="en-content">Dongfeng E70</h4>
+                        <h4 class="cn-content">东风 E70</h4>
+                        <p class="en-content">Year: <span>2021 Model</span></p>
+                        <p class="cn-content">年份：<span>2021款</span></p>
+                        <p class="en-content">Battery: <span>50.8kWh</span></p>
+                        <p class="cn-content">电池：<span>50.8kWh</span></p>
+                        <p class="en-content">Mileage: <span>35,000 km</span></p>
+                        <p class="cn-content">里程：<span>3.5万公里</span></p>
+                        <p class="en-content">Type: <span>EV</span></p>
+                        <p class="cn-content">类型：<span>纯电动</span></p>
+                        <div class="car-price en-content">FOB Price: $9,714起</div>
+                        <div class="car-price cn-content">FOB报价：￥6.8万起</div>
                     </div>
                 </div>
             </div>
@@ -913,276 +763,223 @@
     <!-- 服务流程 -->
     <section class="process" id="process">
         <div class="container">
-            <h2 class="section-title">
-                <span class="cn-content">出口服务流程</span>
-                <span class="en-content">Export Service Process</span>
-            </h2>
+            <h2 class="section-title en-content">Export Service Process</h2>
+            <h2 class="section-title cn-content">出口服务流程</h2>
             <div class="process-list">
                 <div class="process-item">
                     <div class="process-num">1</div>
-                    <h4>
-                        <span class="cn-content">客户选车</span>
-                        <span class="en-content">Customer Car Selection</span>
-                    </h4>
-                    <p>
-                        <span class="cn-content">在线挑选车源，确认车型/配置/价格</span>
-                        <span class="en-content">Select car sources online, confirm model/configuration/price</span>
-                    </p>
+                    <h4 class="en-content">Customer Car Selection</h4>
+                    <h4 class="cn-content">客户选车</h4>
+                    <p class="en-content">Select car sources online, confirm model/configuration/price</p>
+                    <p class="cn-content">在线挑选车源，确认车型/配置/价格</p>
                 </div>
                 <div class="process-item">
                     <div class="process-num">2</div>
-                    <h4>
-                        <span class="cn-content">确认订单</span>
-                        <span class="en-content">Order Confirmation</span>
-                    </h4>
-                    <p>
-                        <span class="cn-content">签订出口合同，支付定金，确认交货细节</span>
-                        <span class="en-content">Sign export contract, pay deposit, confirm delivery details</span>
-                    </p>
+                    <h4 class="en-content">Confirm Order</h4>
+                    <h4 class="cn-content">确认订单</h4>
+                    <p class="en-content">Sign export contract, pay deposit, confirm delivery details</p>
+                    <p class="cn-content">签订出口合同，支付定金，确认交货细节</p>
                 </div>
                 <div class="process-item">
                     <div class="process-num">3</div>
-                    <h4>
-                        <span class="cn-content">车况检测</span>
-                        <span class="en-content">Vehicle Condition Inspection</span>
-                    </h4>
-                    <p>
-                        <span class="cn-content">专业团队全面检测，出具车况报告</span>
-                        <span class="en-content">Professional team conducts comprehensive inspection and issues report</span>
-                    </p>
+                    <h4 class="en-content">Vehicle Condition Inspection</h4>
+                    <h4 class="cn-content">车况检测</h4>
+                    <p class="en-content">Professional team conducts comprehensive inspection and issues vehicle condition report</p>
+                    <p class="cn-content">专业团队全面检测，出具车况报告</p>
                 </div>
                 <div class="process-item">
                     <div class="process-num">4</div>
-                    <h4>
-                        <span class="cn-content">报关报检</span>
-                        <span class="en-content">Customs Declaration</span>
-                    </h4>
-                    <p>
-                        <span class="cn-content">代办全套报关、报检、单证手续</span>
-                        <span class="en-content">Handle full set of customs declaration and document procedures</span>
-                    </p>
+                    <h4 class="en-content">Customs Declaration & Inspection</h4>
+                    <h4 class="cn-content">报关报检</h4>
+                    <p class="en-content">Handle all customs declaration, inspection and document procedures</p>
+                    <p class="cn-content">代办全套报关、报检、单证手续</p>
                 </div>
                 <div class="process-item">
                     <div class="process-num">5</div>
-                    <h4>
-                        <span class="cn-content">港口装船</span>
-                        <span class="en-content">Port Loading</span>
-                    </h4>
-                    <p>
-                        <span class="cn-content">车辆运输至港口，装船发货，物流跟踪</span>
-                        <span class="en-content">Vehicles transported to port, loaded and shipped with logistics tracking</span>
-                    </p>
+                    <h4 class="en-content">Port Loading</h4>
+                    <h4 class="cn-content">港口装船</h4>
+                    <p class="en-content">Vehicle transportation to port, loading and shipping, logistics tracking</p>
+                    <p class="cn-content">车辆运输至港口，装船发货，物流跟踪</p>
                 </div>
                 <div class="process-item">
                     <div class="process-num">6</div>
-                    <h4>
-                        <span class="cn-content">海外提车</span>
-                        <span class="en-content">Overseas Car Pickup</span>
-                    </h4>
-                    <p>
-                        <span class="cn-content">目的地清关，客户提车，售后咨询保障</span>
-                        <span class="en-content">Destination customs clearance, customer pickup with after-sales support</span>
-                    </p>
+                    <h4 class="en-content">Overseas Car Pickup</h4>
+                    <h4 class="cn-content">海外提车</h4>
+                    <p class="en-content">Destination customs clearance, customer car pickup, after-sales consulting guarantee</p>
+                    <p class="cn-content">目的地清关，客户提车，售后咨询保障</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 公司资质：图片匹配 -->
+    <!-- 公司资质 -->
     <section class="cert" id="cert">
         <div class="container">
-            <h2 class="section-title">
-                <span class="cn-content">公司资质</span>
-                <span class="en-content">Company Qualifications</span>
-            </h2>
+            <h2 class="section-title en-content">Company Qualifications</h2>
+            <h2 class="section-title cn-content">公司资质</h2>
             <div class="cert-list">
                 <div class="cert-item">
-                    <img src="https://picsum.photos/id/48/300/200" alt="Business License">
-                    <p>
-                        <span class="cn-content">企业营业执照</span>
-                        <span class="en-content">Business License</span>
-                    </p>
+                    <img src="https://picsum.photos/300/200?business-license" alt="Business License">
+                    <p class="en-content">Business License</p>
+                    <p class="cn-content">企业营业执照</p>
                 </div>
                 <div class="cert-item">
-                    <img src="https://picsum.photos/id/49/300/200" alt="Used Car Export Filing Certificate">
-                    <p>
-                        <span class="cn-content">二手车出口备案证明</span>
-                        <span class="en-content">Used Car Export Filing Certificate</span>
-                    </p>
+                    <img src="https://picsum.photos/300/200?used-car-export-record" alt="Used Car Export Record Certificate">
+                    <p class="en-content">Used Car Export Record Certificate</p>
+                    <p class="cn-content">二手车出口备案证明</p>
                 </div>
                 <div class="cert-item">
-                    <img src="https://picsum.photos/id/50/300/200" alt="Customs Declaration Qualification">
-                    <p>
-                        <span class="cn-content">海关报关企业资质</span>
-                        <span class="en-content">Customs Declaration Qualification</span>
-                    </p>
+                    <img src="https://picsum.photos/300/200?customs-declaration-qualification" alt="Customs Declaration Qualification">
+                    <p class="en-content">Customs Declaration Qualification</p>
+                    <p class="cn-content">海关报关企业资质</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 联系我们：布局居中 -->
+    <!-- 联系我们 -->
     <section class="contact-wrap" id="contact">
         <div class="container">
-            <h2 class="section-title">
-                <span class="cn-content">联系我们</span>
-                <span class="en-content">Contact Us</span>
-            </h2>
+            <h2 class="section-title en-content">Contact Us</h2>
+            <h2 class="section-title cn-content">联系我们</h2>
             <div class="contact">
                 <div class="contact-info">
-                    <h3>
-                        <span class="cn-content">随时为您服务</span>
-                        <span class="en-content">Serving You Anytime</span>
-                    </h3>
+                    <h3 class="en-content">Serving You Anytime</h3>
+                    <h3 class="cn-content">随时为您服务</h3>
                     <div class="contact-item">
-                        <<i class="fas fa-phone"></</i>
-                        <p>
-                            <span class="cn-content">业务电话（香港）：</span>
-                            <span class="en-content">Business Phone (Hong Kong)：</span>
-                            <span>+85 64813920</span>
-                        </p>
+                        <i class="fas fa-phone"></i>
+                        <p class="en-content">Business Phone (HK): <span>+85 64813920</span></p>
+                        <p class="cn-content">业务电话（香港）：<span>+85 64813920</span></p>
                     </div>
                     <div class="contact-item">
-                        <<i class="fas fa-phone"></</i>
-                        <p>
-                            <span class="cn-content">业务电话（大陆）：</span>
-                            <span class="en-content">Business Phone (Mainland)：</span>
-                            <span>+86 13588869839</span>
-                        </p>
+                        <i class="fas fa-phone"></i>
+                        <p class="en-content">Business Phone (Mainland): <span>+86 13588869839</span></p>
+                        <p class="cn-content">业务电话（大陆）：<span>+86 13588869839</span></p>
                     </div>
                     <div class="contact-item">
-                        <<i class="fab fa-whatsapp"></</i>
-                        <p>
-                            <span class="cn-content">WhatsApp：</span>
-                            <span class="en-content">WhatsApp：</span>
-                            <span>+85 64813920</span>
-                        </p>
+                        <i class="fab fa-whatsapp"></i>
+                        <p class="en-content">WhatsApp: <span>+85 64813920</span></p>
+                        <p class="cn-content">WhatsApp：<span>+85 64813920</span></p>
                     </div>
                     <div class="contact-item">
-                        <<i class="fas fa-envelope"></</i>
-                        <p>
-                            <span class="cn-content">商务邮箱：</span>
-                            <span class="en-content">Business Email：</span>
-                            <span>finance@besty-g.com</span>
-                        </p>
+                        <i class="fas fa-envelope"></i>
+                        <p class="en-content">Business Email: <span>finance@besty-g.com</span></p>
+                        <p class="cn-content">商务邮箱：<span>finance@besty-g.com</span></p>
                     </div>
                     <div class="contact-item">
-                        <<i class="fas fa-map-marker-alt"></</i>
-                        <p>
-                            <span class="cn-content">公司地址（香港）：</span>
-                            <span class="en-content">Company Address (Hong Kong)：</span>
-                            <span>UNIT 1021,BEVERLEY COMMERCIAL CENTRE,87-105 CHATHAM ROAD SOUTH, TSIM SHA TSUI,KOWLOON</span>
-                        </p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p class="en-content">Address (HK): <span>UNIT 1021,BEVERLEY COMMERCIAL CENTRE,87-105 CHATHAM ROAD SOUTH, TSIM SHA TSUI,KOWLOON</span></p>
+                        <p class="cn-content">公司地址（香港）：<span>香港九龍尖沙咀漆咸道南 87-105 號百利商業中心 1021 室</span></p>
                     </div>
                     <div class="contact-item">
-                        <<i class="fas fa-map-marker-alt"></</i>
-                        <p>
-                            <span class="cn-content">公司地址（大陆）：</span>
-                            <span class="en-content">Company Address (Mainland)：</span>
-                            <span>Room 502, Building 2, Yunzhou International Center, Xihu District, Hangzhou</span>
-                        </p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p class="en-content">Address (Mainland): <span>Room 502, Building 2, Yunzhou International Center, Xihu District, Hangzhou</span></p>
+                        <p class="cn-content">公司地址（大陆）：<span>杭州市西湖区云州国际中心2号楼502</span></p>
                     </div>
                     <div class="contact-item">
-                        <<i class="fas fa-globe"></</i>
-                        <p>
-                            <span class="cn-content">出口地区：</span>
-                            <span class="en-content">Export Regions：</span>
-                            <span>Central Asia, Africa, the Middle East, Southeast Asia, etc.</span>
-                        </p>
+                        <i class="fas fa-globe"></i>
+                        <p class="en-content">Export Regions: <span>Central Asia, Africa, Middle East, Russia, Southeast Asia, etc.</span></p>
+                        <p class="cn-content">出口地区：<span>中亚、非洲、中东、俄罗斯、东南亚等</span></p>
                     </div>
                 </div>
                 <div class="contact-form">
-                    <h4>
-                        <span class="cn-content">在线咨询</span>
-                        <span class="en-content">Online Consultation</span>
-                    </h4>
-                    <input type="text" class="form-input" placeholder="Your Name/Company Name">
-                    <input type="text" class="form-input" placeholder="Your Country/Region">
-                    <input type="text" class="form-input" placeholder="Intended Car Model/Requirements">
-                    <input type="text" class="form-input" placeholder="Your Contact Information">
+                    <h4 class="en-content">Online Consultation</h4>
+                    <h4 class="cn-content">在线咨询</h4>
+                    <input type="text" class="form-input" placeholder="Your Name/Company Name*" data-placeholder-cn="您的姓名/公司名称*">
+                    <input type="text" class="form-input" placeholder="Your Country/Region*" data-placeholder-cn="您的国家/地区*">
+                    <input type="text" class="form-input" placeholder="Intended Car Model/Requirements*" data-placeholder-cn="意向车型/需求*">
+                    <input type="text" class="form-input" placeholder="Your Contact Information*" data-placeholder-cn="您的联系方式*">
                     <textarea class="form-input" placeholder="Please enter your detailed consultation content..."></textarea>
-                    <button class="btn" style="width:100%;">
-                        <span class="cn-content">提交咨询</span>
-                        <span class="en-content">Submit Consultation</span>
-                    </button>
+                    <button class="btn en-content" style="width:100%;">Submit Consultation</button>
+                    <button class="btn cn-content" style="width:100%; display:none;">提交咨询</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 页脚 -->
     <footer>
         <div class="container">
-            <p>
-                <span class="cn-content">© 2026 Besty-G 版权所有 | 域名：www.besty-g.com | 中亚、非洲、中东、东南亚等地区二手车出口服务商</span>
-                <span class="en-content">© 2026 Besty-G All Rights Reserved | Domain：www.besty-g.com | Used Car Export Service for Central Asia, Africa, Middle East, Southeast Asia</span>
-            </p>
+            <p class="en-content">© 2026 <span>Besty-G</span> All Rights Reserved | Domain: www.besty-g.com | Used Car Export Service Provider for Central Asia/Africa/Middle East/Russia/Southeast Asia</p>
+            <p class="cn-content">© 2026 <span>Besty-G</span> 版权所有 | 域名：www.besty-g.com | 中亚、非洲、中东、俄罗斯、东南亚等地区二手车出口服务商</p>
         </div>
     </footer>
 
+    <!-- 脚本 -->
     <script>
+        // 语言切换功能
         const langBtns = document.querySelectorAll('.lang-btn');
-        const body = document.body;
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const slides = document.querySelectorAll('.banner-slide');
-        const formInputs = document.querySelectorAll('.contact-form .form-input');
-        
-        const placeholders = {
-            cn: ['您的姓名/公司名称', '您的国家/地区', '意向车型/需求', '您的联系方式', '请输入您的详细咨询内容...'],
-            en: ['Your Name/Company Name', 'Your Country/Region', 'Intended Car Model/Requirements', 'Your Contact Information', 'Please enter your detailed consultation content...']
-        };
-
-        const saveLang = localStorage.getItem('bestyLang') || 'en';
-        initLang(saveLang);
+        const htmlBody = document.querySelector('body');
+        const formInputs = document.querySelectorAll('.form-input[data-placeholder-cn]');
 
         langBtns.forEach(btn => {
             btn.addEventListener('click', () => {
+                // 切换按钮状态
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // 切换页面语言
                 const lang = btn.getAttribute('data-lang');
-                initLang(lang);
-                localStorage.setItem('bestyLang', lang);
+                htmlBody.className = lang;
+                
+                // 切换表单占位符
+                formInputs.forEach(input => {
+                    if (lang === 'cn') {
+                        input.setAttribute('placeholder', input.getAttribute('data-placeholder-cn'));
+                    } else {
+                        input.setAttribute('placeholder', input.getAttribute('placeholder').replace(/.*\|/, ''));
+                    }
+                });
+
+                // 切换按钮显示
+                document.querySelector('.btn.en-content').style.display = lang === 'en' ? 'inline-block' : 'none';
+                document.querySelector('.btn.cn-content').style.display = lang === 'cn' ? 'inline-block' : 'none';
             });
         });
 
-        function initLang(lang) {
-            body.className = lang;
-            langBtns.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
-            document.title = lang === 'cn' 
-                ? 'Besty-G - 中国专业二手车出口服务商 | 中亚/非洲/中东/东南亚' 
-                : 'Besty-G - Professional Used Car Export Service Provider in China | Central Asia/Africa/Middle East/Southeast Asia';
-            document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en-US';
-            updateFormPlaceholders(lang);
-        }
-
-        function updateFormPlaceholders(lang) {
-            formInputs.forEach((input, index) => {
-                input.placeholder = placeholders[lang][index];
-            });
-        }
-
+        // 汉堡菜单交互
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             hamburger.innerHTML = navMenu.classList.contains('active') 
-                ? '<<i class="fas fa-times"></</i>' 
-                : '<<i class="fas fa-bars"></</i>';
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
-
-        document.querySelectorAll('.nav-menu a').forEach(link => {
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                hamburger.innerHTML = '<<i class="fas fa-bars"></</i>';
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
 
+        // 轮播图自动切换
+        const slides = document.querySelectorAll('.banner-slide');
         let currentSlide = 0;
         function showSlide(index) {
-            slides.forEach(s => s.classList.remove('active'));
-            currentSlide = index >= slides.length ? 0 : index < 0 ? slides.length - 1 : index;
+            slides.forEach(slide => slide.classList.remove('active'));
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
             slides[currentSlide].classList.add('active');
         }
         function nextSlide() {
-            showSlide(++currentSlide);
+            currentSlide++;
+            showSlide(currentSlide);
         }
         setInterval(nextSlide, 3500);
+
+        // 页面平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest'
+                });
+            });
+        });
     </script>
 </body>
 </html>
