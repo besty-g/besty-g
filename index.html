@@ -1010,9 +1010,99 @@
                 }
             });
         });
+        // 添加表单提交功能
+        document.querySelector('.contact-form .btn').addEventListener('click', function() {
+            // 获取所有表单字段
+            const formInputs = document.querySelectorAll('.contact-form .form-input');
+            const nameInput = formInputs[0];
+            const phoneInput = formInputs[1];
+            const emailInput = formInputs[2];
+            const carModelInput = formInputs[3];
+            const messageInput = formInputs[4];
+            
+            // 检查是否所有字段都已填写
+            if (!nameInput.value.trim() || !phoneInput.value.trim() || 
+                !emailInput.value.trim() || !carModelInput.value.trim() || 
+                !messageInput.value.trim()) {
+                alert(document.body.classList.contains('cn') ? 
+                    '请填写所有必填字段' : 'Please fill in all required fields');
+                return;
+            }
+            
+            // 验证邮箱格式
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                alert(document.body.classList.contains('cn') ? 
+                    '请输入有效的邮箱地址' : 'Please enter a valid email address');
+                return;
+            }
+            
+            // 准备提交数据
+            const formData = {
+                name: nameInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                email: emailInput.value.trim(),
+                car_model: carModelInput.value.trim(),
+                message: messageInput.value.trim(),
+                language: document.body.classList.contains('cn') ? 'cn' : 'en'
+            };
+            
+            // 显示加载状态
+            const originalText = this.innerHTML;
+            this.innerHTML = document.body.classList.contains('cn') ? 
+                '提交中...' : 'Submitting...';
+            this.disabled = true;
+            
+            // 发送AJAX请求
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://man.besty-g.com/api/save_message.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    // 恢复按钮状态
+                    const submitBtn = document.querySelector('.contact-form .btn');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    if (xhr.status === 200) {
+                        alert(document.body.classList.contains('cn') ? 
+                            '提交成功！我们将尽快与您联系。' : 
+                            'Submission successful! We will contact you soon.');
+                        
+                        // 清空表单
+                        formInputs.forEach(input => {
+                            if (input.type !== 'submit') {
+                                input.value = '';
+                            }
+                        });
+                    } else {
+                        alert(document.body.classList.contains('cn') ? 
+                            '提交失败，请稍后重试。' : 
+                            'Submission failed, please try again later.');
+                        console.error('API Error:', xhr.status, xhr.statusText);
+                    }
+                }
+            };
+            
+            xhr.onerror = function() {
+                // 恢复按钮状态
+                const submitBtn = document.querySelector('.contact-form .btn');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                alert(document.body.classList.contains('cn') ? 
+                    '网络错误，请检查网络连接。' : 
+                    'Network error, please check your connection.');
+            };
+            
+            // 发送请求
+            xhr.send(JSON.stringify(formData));
+        });
     </script>
 </body>
 </html>
+
 
 
 
