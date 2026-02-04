@@ -306,19 +306,34 @@
             padding-top: 10px;
             border-top: 1px dashed var(--border-gray);
         }
-        /* 服务流程：间距清爽，适配 */
+        /* 服务流程：修复步骤1无横线问题，样式统一 */
         .process {
             background-color: var(--light-gray);
         }
         .process-list {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
+            gap: 0; /* 移除gap，用内部间距控制，保证横线连续 */
             text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+        /* 新增流程横线容器，确保所有步骤横线统一 */
+        .process-list::before {
+            content: "";
+            position: absolute;
+            top: 21px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background-color: var(--primary);
+            opacity: 0.3;
+            z-index: 1;
         }
         .process-item {
             position: relative;
-            padding: 0 10px;
+            padding: 0 15px;
+            z-index: 2; /* 确保步骤在横线上方 */
         }
         .process-num {
             width: 42px;
@@ -331,6 +346,8 @@
             font-weight: bold;
             font-size: 16px;
             box-shadow: 0 2px 8px rgba(22,93,255,0.3);
+            position: relative;
+            z-index: 3; /* 确保数字圆在横线和文字上方 */
         }
         .process-item h4 {
             font-size: 16px;
@@ -342,17 +359,8 @@
             color: #666;
             line-height: 1.6;
         }
+        /* 移除原有单个步骤的横线，改用统一的容器横线 */
         .process-item::after {
-            content: "";
-            position: absolute;
-            top: 21px;
-            left: calc(100% + 10px);
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary);
-            opacity: 0.3;
-        }
-        .process-item:last-child::after {
             display: none;
         }
         /* 资质板块：图片圆角，hover放大 */
@@ -477,31 +485,37 @@
         body.cn .en-content {
             display: none;
         }
-        /* 手机端适配：核心！LOGO自动缩小，导航栏恢复正常，无遮挡 */
+        /* 手机端适配：修复布局错乱问题，核心优化 */
         @media (max-width: 768px) {
             /* 语言切换按钮适配 */
             .lang-switch {
                 top: 15px;
                 right: 15px;
+                z-index: 1001; /* 高于导航栏 */
             }
             .lang-btn {
                 padding: 6px 10px;
                 font-size: 14px;
             }
-            /* 手机端LOGO+导航栏恢复正常尺寸 */
+            /* 手机端LOGO+导航栏恢复正常尺寸，避免遮挡 */
             .logo {
                 height: 60px !important;
             }
             .nav-wrap {
                 height: 80px !important;
+                position: relative;
             }
             .banner {
                 margin-top: 80px !important;
-                height: calc(100vh - 80px) !important;
+                height: 400px !important; /* 固定手机端轮播高度，避免占满屏幕 */
             }
-            /* 手机端汉堡菜单显示 */
+            /* 手机端汉堡菜单显示，优化交互 */
             .hamburger {
                 display: block;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
             }
             .nav-menu {
                 position: fixed;
@@ -524,45 +538,76 @@
                 padding: 18px 0;
                 border-bottom: 1px solid #f0f0f0;
             }
-            /* 其他板块小屏适配 */
+            /* 轮播文字适配手机端 */
+            .banner-text {
+                padding: 20px 25px;
+                width: 90%;
+                margin: 0 auto;
+            }
             .banner-text h1 {
-                font-size: 22px;
+                font-size: 20px;
+                margin-bottom: 15px;
             }
             .banner-text p {
-                font-size: 15px;
-                padding: 0 5px;
+                font-size: 14px;
+                margin-bottom: 20px;
+                line-height: 1.6;
             }
-            .banner-text {
-                padding: 25px 30px;
-                width: 90%;
-            }
+            /* 板块标题适配 */
             .section-title {
-                font-size: 24px;
-                margin-bottom: 30px;
+                font-size: 22px;
+                margin-bottom: 25px;
             }
             section {
-                padding: 40px 0;
+                padding: 30px 0;
             }
+            /* 所有列表改为单列，优化间距 */
             .advantage-list, .car-list, .process-list, .cert-list {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
             }
+            /* 服务流程手机端优化 */
+            .process-list::before {
+                display: none; /* 手机端隐藏横向线条 */
+            }
+            .process-item {
+                padding: 15px 0;
+                border-bottom: 1px dashed var(--border-gray);
+            }
+            .process-item:last-child {
+                border-bottom: none;
+            }
+            .process-num {
+                margin: 0 auto 15px;
+            }
+            /* 车源卡片适配 */
+            .car-img {
+                height: 180px;
+            }
+            /* 资质图片适配 */
             .cert-item img {
-                max-width: 280px;
+                max-width: 250px;
             }
-            .advantage-item {
-                padding: 25px 15px;
-            }
-            .contact-form {
-                padding: 25px;
-            }
+            /* 联系板块适配，调整顺序和间距 */
             .contact {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
             .contact-info {
                 order: 2;
             }
             .contact-form {
                 order: 1;
+                padding: 20px;
+            }
+            .contact-item {
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+            .contact-item i {
+                font-size: 18px;
             }
         }
         /* 平板端适配 */
@@ -573,13 +618,7 @@
             }
             .process-list {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
-            }
-            .process-item {
-                margin-bottom: 20px;
-            }
-            .process-item::after {
-                display: none;
+                gap: 20px;
             }
             .cert-list {
                 grid-template-columns: repeat(2, 1fr);
@@ -618,13 +657,13 @@
     <!-- 轮播图 -->
     <section class="banner" id="home">
         <div class="banner-slide active">
-            <img src="https://picsum.photos/1920/1080?car-export-port" alt="Used car export port delivery">
+            <img src="https://picsum.photos/1920/1080?used-car-export-port" alt="Used car export port delivery">
         </div>
         <div class="banner-slide">
-            <img src="https://picsum.photos/1920/1080?used-electric-cars" alt="Boutique used electric car sources display">
+            <img src="https://picsum.photos/1920/1080?used-electric-cars-showroom" alt="Boutique used electric car sources display">
         </div>
         <div class="banner-slide">
-            <img src="https://picsum.photos/1920/1080?besty-g-office" alt="Besty-G company real scene">
+            <img src="https://picsum.photos/1920/1080?besty-g-company-office" alt="Besty-G company real scene">
         </div>
         <div class="banner-text">
             <h1 class="en-content">Besty-G - Professional Used Car Export Service Provider</h1>
@@ -653,8 +692,8 @@
                     <i class="fas fa-car"></i>
                     <h3 class="en-content">Direct Car Sources</h3>
                     <h3 class="cn-content">一手车源</h3>
-                    <p class="en-content">Direct procurement of BYD, Li Auto, Deepal, Dongfeng and other brand boutique new energy vehicle sources, no middlemen, obvious price advantage.</p>
-                    <p class="cn-content">直采比亚迪、理想、深蓝、东风等品牌精品新能源车源，无中间商，价格优势明显</p>
+                    <p class="en-content">Direct procurement of BYD, Li Auto, Toyota, Dongfeng and other brand boutique vehicle sources, no middlemen, obvious price advantage.</p>
+                    <p class="cn-content">直采比亚迪、理想、丰田、东风等品牌精品车源，无中间商，价格优势明显</p>
                 </div>
                 <div class="advantage-item">
                     <i class="fas fa-ship"></i>
@@ -680,9 +719,10 @@
             <h2 class="section-title en-content">Popular Car Source Recommendations</h2>
             <h2 class="section-title cn-content">热门车源推荐</h2>
             <div class="car-list">
+                <!-- 比亚迪汉 - 匹配车型图片 -->
                 <div class="car-card">
                     <div class="car-img">
-                        <img src="https://picsum.photos/400/200?byd-han" alt="BYD Han">
+                        <img src="https://picsum.photos/400/200?byd-han-ev" alt="BYD Han EV">
                     </div>
                     <div class="car-info">
                         <h4 class="en-content">BYD Han</h4>
@@ -699,9 +739,10 @@
                         <div class="car-price cn-content">FOB报价：￥8.5万起</div>
                     </div>
                 </div>
+                <!-- 理想L9 - 匹配车型图片 -->
                 <div class="car-card">
                     <div class="car-img">
-                        <img src="https://picsum.photos/400/200?li-auto-l9" alt="Li Auto L9">
+                        <img src="https://picsum.photos/400/200?li-auto-l9-erev" alt="Li Auto L9">
                     </div>
                     <div class="car-info">
                         <h4 class="en-content">Li Auto L9</h4>
@@ -718,28 +759,30 @@
                         <div class="car-price cn-content">FOB报价：￥12.8万起</div>
                     </div>
                 </div>
+                <!-- 丰田卡罗拉 - 替换原深蓝SL03 -->
                 <div class="car-card">
                     <div class="car-img">
-                        <img src="https://picsum.photos/400/200?deepal-sl03" alt="Deepal SL03">
+                        <img src="https://picsum.photos/400/200?toyota-corolla-used" alt="Toyota Corolla">
                     </div>
                     <div class="car-info">
-                        <h4 class="en-content">Deepal SL03</h4>
-                        <h4 class="cn-content">深蓝 SL03</h4>
+                        <h4 class="en-content">Toyota Corolla</h4>
+                        <h4 class="cn-content">丰田 卡罗拉</h4>
                         <p class="en-content">Year: <span>2022 Model</span></p>
                         <p class="cn-content">年份：<span>2022款</span></p>
-                        <p class="en-content">Battery: <span>58.5kWh</span></p>
-                        <p class="cn-content">电池：<span>58.5kWh</span></p>
+                        <p class="en-content">Engine: <span>1.5L</span></p>
+                        <p class="cn-content">发动机：<span>1.5L</span></p>
                         <p class="en-content">Mileage: <span>25,000 km</span></p>
                         <p class="cn-content">里程：<span>2.5万公里</span></p>
-                        <p class="en-content">Type: <span>EV</span></p>
-                        <p class="cn-content">类型：<span>纯电动</span></p>
+                        <p class="en-content">Type: <span>Gasoline</span></p>
+                        <p class="cn-content">类型：<span>燃油</span></p>
                         <div class="car-price en-content">FOB Price: $11,286起</div>
                         <div class="car-price cn-content">FOB报价：￥7.9万起</div>
                     </div>
                 </div>
+                <!-- 东风E70 - 匹配车型图片 -->
                 <div class="car-card">
                     <div class="car-img">
-                        <img src="https://picsum.photos/400/200?dongfeng-e70" alt="Dongfeng E70">
+                        <img src="https://picsum.photos/400/200?dongfeng-e70-ev" alt="Dongfeng E70">
                     </div>
                     <div class="car-info">
                         <h4 class="en-content">Dongfeng E70</h4>
@@ -819,17 +862,17 @@
             <h2 class="section-title cn-content">公司资质</h2>
             <div class="cert-list">
                 <div class="cert-item">
-                    <img src="https://picsum.photos/300/200?business-license" alt="Business License">
+                    <img src="https://picsum.photos/300/200?business-license-official" alt="Business License">
                     <p class="en-content">Business License</p>
                     <p class="cn-content">企业营业执照</p>
                 </div>
                 <div class="cert-item">
-                    <img src="https://picsum.photos/300/200?used-car-export-record" alt="Used Car Export Record Certificate">
+                    <img src="https://picsum.photos/300/200?used-car-export-record-certificate" alt="Used Car Export Record Certificate">
                     <p class="en-content">Used Car Export Record Certificate</p>
                     <p class="cn-content">二手车出口备案证明</p>
                 </div>
                 <div class="cert-item">
-                    <img src="https://picsum.photos/300/200?customs-declaration-qualification" alt="Customs Declaration Qualification">
+                    <img src="https://picsum.photos/300/200?customs-declaration-qualification-official" alt="Customs Declaration Qualification">
                     <p class="en-content">Customs Declaration Qualification</p>
                     <p class="cn-content">海关报关企业资质</p>
                 </div>
@@ -891,7 +934,7 @@
                     <input type="text" class="form-input" placeholder="Your Contact Information*" data-placeholder-cn="您的联系方式*">
                     <textarea class="form-input" placeholder="Please enter your detailed consultation content..."></textarea>
                     <button class="btn en-content" style="width:100%;">Submit Consultation</button>
-                    <button class="btn cn-content" style="width:100%; display:none;">提交咨询</button>
+                    <button class="btn cn-content" style="width:100%;">提交咨询</button>
                 </div>
             </div>
         </div>
@@ -931,9 +974,13 @@
                     }
                 });
 
-                // 切换按钮显示
+                // 切换轮播按钮显示
                 document.querySelector('.btn.en-content').style.display = lang === 'en' ? 'inline-block' : 'none';
                 document.querySelector('.btn.cn-content').style.display = lang === 'cn' ? 'inline-block' : 'none';
+                
+                // 切换表单按钮显示
+                document.querySelector('.contact-form .btn.en-content').style.display = lang === 'en' ? 'block' : 'none';
+                document.querySelector('.contact-form .btn.cn-content').style.display = lang === 'cn' ? 'block' : 'none';
             });
         });
 
@@ -941,45 +988,4 @@
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
         hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            hamburger.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // 轮播图自动切换
-        const slides = document.querySelectorAll('.banner-slide');
-        let currentSlide = 0;
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            if (index >= slides.length) currentSlide = 0;
-            if (index < 0) currentSlide = slides.length - 1;
-            slides[currentSlide].classList.add('active');
-        }
-        function nextSlide() {
-            currentSlide++;
-            showSlide(currentSlide);
-        }
-        setInterval(nextSlide, 3500);
-
-        // 页面平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                    inline: 'nearest'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+            navMenu.classList
